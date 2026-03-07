@@ -1,0 +1,26 @@
+Package: readoecd
+Title: Download and Tidy Data from the OECD
+Version: 0.1.0
+Authors@R: person("Charles", "Coverdale", email = "charlesfcoverdale@gmail.com",
+    role = c("aut", "cre"))
+Description: Provides clean, tidy access to labour market data published by
+    the Organisation for Economic Co-operation and Development (OECD). The
+    initial release covers monthly unemployment rates across all 38 OECD
+    member countries. Data is downloaded from the OECD Data Explorer API
+    <https://data-explorer.oecd.org> on first use and cached locally for
+    subsequent calls. Returns tidy long-format data frames ready for analysis
+    and visualisation.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Language: en-GB
+URL: https://github.com/charlescoverdale/readoecd
+BugReports: https://github.com/charlescoverdale/readoecd/issues
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Depends: R (>= 4.1.0)
+Imports:
+    httr2,
+    cli
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
