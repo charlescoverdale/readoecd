@@ -20,6 +20,21 @@ There is an existing R package called [OECD](https://cran.r-project.org/package=
 remotes::install_github("charlescoverdale/readoecd")
 ```
 
+## Need something more specific?
+
+Each function in readoecd returns a single, opinionated series — for example, `get_oecd_cpi()` returns the annual headline inflation rate, and `get_oecd_health()` returns total health expenditure as a share of GDP. If you need a different cut of the data — a specific expenditure category, a different unit of measurement, or a variable treatment not covered here — the best starting point is the [OECD Data Explorer](https://data-explorer.oecd.org), which lets you browse and filter any OECD dataset interactively.
+
+Examples of things you might want that go beyond what readoecd currently provides:
+
+- **CPI by expenditure category** (food, housing, transport) rather than the headline total
+- **Health expenditure by financing source** (government-only vs out-of-pocket) rather than the all-sources aggregate
+- **GDP in constant prices** (volume, real growth) rather than current prices
+- **Tax revenue by tax type** (income tax, VAT, corporate tax) rather than the total
+- **Unemployment by age group or sex** rather than the all-persons total
+- **Trade in goods and services separately** rather than the combined current account
+
+For any of these, visit [data-explorer.oecd.org](https://data-explorer.oecd.org), find the dataset, apply your filters, and use the "Developer API" button to get the URL — the OECD's API documentation explains the filter syntax in detail.
+
 ## Datasets
 
 ```r
@@ -45,6 +60,21 @@ head(latest[order(-latest$value), c("country_name", "year", "value")], 5)
 # G7 comparison since 2000
 g7 <- get_oecd_gdp(c("CAN", "FRA", "DEU", "ITA", "JPN", "GBR", "USA"),
                    start_year = 2000)
+```
+
+### `get_oecd_cpi()` — CPI Inflation
+
+Source: **OECD Prices database** (COICOP 1999 classification). Annual year-on-year percentage change in the Consumer Price Index for total household expenditure, not seasonally adjusted. This is the standard harmonised measure of headline inflation used for cross-country comparisons. Coverage varies by country but is generally available from the 1970s–1980s onwards.
+
+```r
+# Inflation through the post-COVID price surge
+cpi <- get_oecd_cpi(c("AUS", "GBR", "USA", "DEU"), start_year = 2018)
+cpi[cpi$year == 2022, c("country_name", "year", "value")]
+#>    country_name year value
+#>       Australia 2022   6.6
+#>         Germany 2022   8.7
+#>  United Kingdom 2022   9.1
+#>   United States 2022   8.0
 ```
 
 ### `get_oecd_unemployment()` — Unemployment Rate
@@ -84,6 +114,21 @@ latest_tax[order(-latest_tax$value), ]
 #>   United States 2022  27.7
 ```
 
+### `get_oecd_deficit()` — Government Deficit
+
+Source: **OECD National Accounts** (General Government Accounts, NAAG). General government net lending/borrowing as a percentage of GDP, consistent with the System of National Accounts (SNA) definition. A positive value indicates a surplus; a negative value indicates a deficit. Annual data; most OECD members covered from the 1990s.
+
+```r
+# Fiscal positions during and after the pandemic
+deficit <- get_oecd_deficit(c("AUS", "GBR", "USA", "DEU"), start_year = 2018)
+deficit[deficit$year %in% 2019:2022, c("country_name", "year", "value")]
+#>    country_name year  value
+#>       Australia 2019  0.02
+#>       Australia 2020 -4.45
+#>       Australia 2021 -4.97
+#>       Australia 2022 -1.70
+```
+
 ### `get_oecd_health()` — Health Expenditure
 
 Source: **System of Health Accounts (SHA)**. Total current health expenditure as a percentage of GDP, covering all financing sources — government schemes, compulsory health insurance, voluntary health insurance, and out-of-pocket payments. Based on the internationally standardised SHA 2011 framework developed jointly by the OECD, WHO, and Eurostat. Annual data; coverage typically from 2000 onwards.
@@ -112,6 +157,20 @@ edu <- get_oecd_education(c("AUS", "GBR", "USA", "KOR", "FIN"),
 
 latest_edu <- edu[edu$year == max(edu$year), c("country_name", "year", "value")]
 latest_edu[order(-latest_edu$value), ]
+```
+
+### `get_oecd_inequality()` — Income Inequality
+
+Source: **OECD Income Distribution Database (IDD)**. Gini coefficient of disposable household income (after taxes and transfers), on a scale from 0 (perfect equality) to 1 (maximum inequality). Follows the OECD METH2012 methodology for comparability across countries and over time. Annual data; coverage varies by country, typically from the mid-1990s.
+
+```r
+# Income inequality: how do OECD countries compare?
+gini <- get_oecd_inequality("all", start_year = 2010)
+latest_gini <- gini[gini$year == max(gini$year), ]
+
+# Most and least equal OECD economies
+head(latest_gini[order(latest_gini$value), c("country_name", "year", "value")], 5)
+head(latest_gini[order(-latest_gini$value), c("country_name", "year", "value")], 5)
 ```
 
 ### `get_oecd_productivity()` — Labour Productivity
@@ -167,7 +226,7 @@ All `get_oecd_*()` functions return a tidy long-format data frame with consisten
 | `country_name` | character | English country name |
 | `year` | integer | Calendar year (annual datasets) |
 | `period` | character | `"YYYY-MM"` for monthly datasets |
-| `series` | character | Series label (e.g. `"GDP"`, `"TAX_REVENUE"`) |
+| `series` | character | Series label (e.g. `"GDP"`, `"CPI_INFLATION"`) |
 | `value` | numeric | Observation value |
 | `unit` | character | Unit of measurement |
 
