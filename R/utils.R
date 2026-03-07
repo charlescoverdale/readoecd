@@ -155,7 +155,7 @@ validate_countries <- function(countries) {
 #'   an error.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' check_oecd_api()
 #' }
 #'

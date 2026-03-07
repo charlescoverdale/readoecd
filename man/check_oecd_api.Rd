@@ -15,7 +15,7 @@ Tests the OECD API by making a small live request. Useful for diagnosing
 connectivity issues or confirming the API is responding normally.
 }
 \examples{
-\donttest{
+\dontrun{
 check_oecd_api()
 }
 
