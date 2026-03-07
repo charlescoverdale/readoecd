@@ -20,9 +20,9 @@ There is an existing R package called [OECD](https://cran.r-project.org/package=
 remotes::install_github("charlescoverdale/readoecd")
 ```
 
-## Need something more specific?
+## Looking for a specific dataset or variable treatment?
 
-Each function in readoecd returns a single, opinionated series — for example, `get_oecd_cpi()` returns the annual headline inflation rate, and `get_oecd_health()` returns total health expenditure as a share of GDP. If you need a different cut of the data — a specific expenditure category, a different unit of measurement, or a variable treatment not covered here — the best starting point is the [OECD Data Explorer](https://data-explorer.oecd.org), which lets you browse and filter any OECD dataset interactively.
+Each function in readoecd returns a single, opinionated series — for example, `get_oecd_cpi()` returns the annual headline inflation rate, and `get_oecd_health()` returns total health expenditure as a share of GDP. If you need a different cut of the data, the best starting point is the [OECD Data Explorer](https://data-explorer.oecd.org), which lets you browse and filter any OECD dataset interactively.
 
 Examples of things you might want that go beyond what readoecd currently provides:
 
@@ -32,8 +32,6 @@ Examples of things you might want that go beyond what readoecd currently provide
 - **Tax revenue by tax type** (income tax, VAT, corporate tax) rather than the total
 - **Unemployment by age group or sex** rather than the all-persons total
 - **Trade in goods and services separately** rather than the combined current account
-
-For any of these, visit [data-explorer.oecd.org](https://data-explorer.oecd.org), find the dataset, apply your filters, and use the "Developer API" button to get the URL — the OECD's API documentation explains the filter syntax in detail.
 
 ## Datasets
 
