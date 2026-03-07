@@ -2,11 +2,11 @@
 
 export(check_oecd_api)
 export(clear_oecd_cache)
+export(get_oecd_current_account)
 export(get_oecd_education)
 export(get_oecd_gdp)
 export(get_oecd_health)
 export(get_oecd_productivity)
 export(get_oecd_tax)
-export(get_oecd_trade)
 export(get_oecd_unemployment)
 export(list_oecd_countries)

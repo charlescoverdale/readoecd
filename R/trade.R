@@ -83,12 +83,12 @@ parse_trade <- function(df) {
 #'
 #' @examples
 #' \donttest{
-#' trade <- get_oecd_trade(c("AUS", "DEU", "USA"), start_year = 2000)
+#' trade <- get_oecd_current_account(c("AUS", "DEU", "USA"), start_year = 2000)
 #' head(trade)
 #' }
 #'
 #' @export
-get_oecd_trade <- function(countries = "all", start_year = 1990,
+get_oecd_current_account <- function(countries = "all", start_year = 1990,
                            refresh = FALSE) {
   countries <- validate_countries(countries)
   filter    <- build_filter(OECD_TRADE_FILTER_TEMPLATE, countries)

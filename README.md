@@ -115,7 +115,7 @@ head(latest_prod[order(-latest_prod$value), c("country_name", "year", "value")],
 
 ```r
 # Persistent surplus and deficit countries
-trade <- get_oecd_trade("all", start_year = 2010)
+trade <- get_oecd_current_account("all", start_year = 2010)
 latest_trade <- trade[trade$year == max(trade$year), ]
 
 # Largest surpluses
@@ -161,7 +161,7 @@ Source: **Education at a Glance (EAG) — UOE Finance indicators**. Total expend
 
 Source: **OECD Productivity Database (PDB)**. GDP per hour worked in USD PPP where available, falling back to GDP per capita. GDP per hour worked is the standard measure of labour productivity used for cross-country comparisons, as it adjusts for differences in average working hours across countries. Annual data; coverage varies by country.
 
-### `get_oecd_trade()` — Current Account Balance
+### `get_oecd_current_account()` — Current Account Balance
 
 Source: **OECD Balance of Payments Statistics**. Annual current account balance with the rest of the world, in millions of US dollars at current exchange rates. A positive value indicates a surplus (exports exceeding imports of goods, services, income, and transfers); a negative value indicates a deficit. Coverage is annual; most countries available from the 1990s.
 
