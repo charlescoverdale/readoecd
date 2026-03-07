@@ -135,21 +135,37 @@ list_oecd_countries()
 clear_oecd_cache()
 ```
 
-## Functions
+## Datasets
 
-### Data
+### `get_oecd_gdp()` — Gross Domestic Product
 
-| Function | Dataset | Returns |
-|---|---|---|
-| `get_oecd_gdp()` | OECD National Accounts | Annual GDP at current prices |
-| `get_oecd_unemployment()` | OECD Labour Force Statistics | Monthly unemployment rate |
-| `get_oecd_tax()` | OECD Revenue Statistics | Total tax revenue as % of GDP |
-| `get_oecd_health()` | System of Health Accounts (SHA) | Health expenditure as % of GDP |
-| `get_oecd_education()` | Education at a Glance (EAG) | Education expenditure as % of GDP |
-| `get_oecd_productivity()` | OECD Productivity Database | GDP per hour worked or per capita |
-| `get_oecd_trade()` | OECD Balance of Payments | Annual current account balance |
+Source: **OECD National Accounts** (Main Aggregates, Table 1). Annual GDP measured using the expenditure approach at current prices, in millions of US dollars at exchange rates. Coverage is broad — most OECD members have data from the 1990s, some earlier. GDP in USD PPP is used for cross-country comparisons where available; the package falls back to exchange-rate USD if PPP is not published for a given country-year.
 
-### Utilities
+### `get_oecd_unemployment()` — Unemployment Rate
+
+Source: **OECD Labour Force Statistics** (Harmonised Unemployment Rates). Monthly seasonally-adjusted unemployment rate as a percentage of the labour force, for persons aged 15 and over. The harmonised series adjusts for differences in national survey methodologies, making it the standard series for cross-country comparisons. Coverage varies by country but generally starts from the 1980s–1990s.
+
+### `get_oecd_tax()` — Tax Revenue
+
+Source: **OECD Revenue Statistics Comparator**. Total tax revenue as a percentage of GDP, covering all levels of government (central, state, and local) and all tax types (income, payroll, property, goods and services, and other taxes). The standard measure of overall tax burden used in cross-country fiscal analysis. Annual data; most countries covered from the early 1990s.
+
+### `get_oecd_health()` — Health Expenditure
+
+Source: **System of Health Accounts (SHA)**. Total current health expenditure as a percentage of GDP, covering all financing sources — government schemes, compulsory health insurance, voluntary health insurance, and out-of-pocket payments. Based on the internationally standardised SHA 2011 framework developed jointly by the OECD, WHO, and Eurostat. Annual data; coverage typically from 2000 onwards.
+
+### `get_oecd_education()` — Education Expenditure
+
+Source: **Education at a Glance (EAG) — UOE Finance indicators**. Total expenditure on educational institutions as a percentage of GDP, aggregated across all levels of education (ISCED 0–8, from early childhood through tertiary). Covers both public and private expenditure. Published annually; data typically available with a two-year lag, covering most OECD members from the mid-2000s.
+
+### `get_oecd_productivity()` — Labour Productivity
+
+Source: **OECD Productivity Database (PDB)**. GDP per hour worked in USD PPP where available, falling back to GDP per capita. GDP per hour worked is the standard measure of labour productivity used for cross-country comparisons, as it adjusts for differences in average working hours across countries. Annual data; coverage varies by country.
+
+### `get_oecd_trade()` — Current Account Balance
+
+Source: **OECD Balance of Payments Statistics**. Annual current account balance with the rest of the world, in millions of US dollars at current exchange rates. A positive value indicates a surplus (exports exceeding imports of goods, services, income, and transfers); a negative value indicates a deficit. Coverage is annual; most countries available from the 1990s.
+
+## Utility functions
 
 | Function | Description |
 |---|---|
