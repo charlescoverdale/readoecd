@@ -1,3 +1,9 @@
+# readoecd 0.3.0
+
+* Added `get_oecd_cpi()` — annual CPI inflation rate, year-on-year (OECD Prices database).
+* Added `get_oecd_deficit()` — general government net lending/borrowing as % of GDP (NAAG).
+* Added `get_oecd_inequality()` — Gini coefficient of disposable income (OECD IDD).
+
 # readoecd 0.2.0
 
 * Added `get_oecd_gdp()` — annual GDP at current prices (OECD National Accounts).

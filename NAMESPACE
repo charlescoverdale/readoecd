@@ -2,7 +2,9 @@
 
 export(check_oecd_api)
 export(clear_oecd_cache)
+export(get_oecd_cpi)
 export(get_oecd_current_account)
+export(get_oecd_deficit)
 export(get_oecd_education)
 export(get_oecd_gdp)
 export(get_oecd_health)
