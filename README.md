@@ -33,7 +33,7 @@ Examples of things you might want that go beyond what readoecd currently provide
 - **Unemployment by age group or sex** rather than the all-persons total
 - **Trade in goods and services separately** rather than the combined current account
 
-## Datasets
+## Datasets available in this package
 
 ```r
 library(readoecd)
