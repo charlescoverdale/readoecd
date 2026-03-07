@@ -30,9 +30,16 @@ parse_unemployment <- function(df) {
   # TIME_PERIOD, Time period,
   # OBS_VALUE, Observation value,
   # ...
+  if (nrow(df) == 0) {
+    return(data.frame(country=character(0), country_name=character(0),
+                      period=character(0), series=character(0),
+                      value=numeric(0), unit=character(0),
+                      stringsAsFactors=FALSE))
+  }
+  cname  <- oecd_country_name_col(df)
   result <- data.frame(
     country      = df[["REF_AREA"]],
-    country_name = df[["Reference.area"]],
+    country_name = df[[cname]],
     period       = df[["TIME_PERIOD"]],
     series       = "Unemployment rate",
     value        = suppressWarnings(as.numeric(df[["OBS_VALUE"]])),

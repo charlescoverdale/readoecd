@@ -1,9 +1,15 @@
+# readoecd 0.2.0
+
+* Added `get_oecd_gdp()` — annual GDP at current prices (OECD National Accounts).
+* Added `get_oecd_tax()` — total tax revenue as % of GDP (OECD Revenue Statistics).
+* Added `get_oecd_health()` — total health expenditure as % of GDP (SHA database).
+* Added `get_oecd_education()` — total education expenditure as % of GDP (EAG UOE Finance).
+* Added `get_oecd_productivity()` — GDP per hour worked or per capita (OECD PDB).
+* Added `get_oecd_trade()` — annual current account balance in USD (OECD BOP).
+
 # readoecd 0.1.0
 
 * Initial release.
-* Provides tidy access to 10 key OECD economic datasets via `get_oecd_*()` functions.
-* Covers: GDP, unemployment, CPI, tax revenue, government debt, government deficit,
-  income inequality, health expenditure, education expenditure, labour productivity,
-  and trade balance.
-* Data is downloaded from the OECD Data Explorer API on first use and cached locally.
+* `get_oecd_unemployment()` — monthly unemployment rates for all 38 OECD members.
 * Utility functions: `list_oecd_countries()`, `check_oecd_api()`, `clear_oecd_cache()`.
+* Data is downloaded from the OECD Data Explorer API on first use and cached locally.

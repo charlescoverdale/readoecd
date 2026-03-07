@@ -84,6 +84,28 @@ oecd_fetch <- function(dataflow, filter, tag, start_year, refresh = FALSE) {
   df
 }
 
+# Return a zero-row result data frame with the standard column schema.
+empty_oecd_result <- function() {
+  data.frame(
+    country      = character(0),
+    country_name = character(0),
+    year         = integer(0),
+    series       = character(0),
+    value        = numeric(0),
+    unit         = character(0),
+    stringsAsFactors = FALSE
+  )
+}
+
+# Locate the human-readable country name column in an OECD CSV response.
+# OECD's csvfilewithlabels format adds label columns adjacent to code columns;
+# the name for REF_AREA is usually "Reference.area" (R coerces spaces to dots).
+oecd_country_name_col <- function(df) {
+  cand  <- c("Reference.area", "Reference area", "REF_AREA")
+  found <- intersect(cand, names(df))
+  if (length(found) > 0) found[1] else "REF_AREA"
+}
+
 # Build an OECD filter string with country substitution.
 # template uses "COUNTRIES" as a placeholder for the country codes.
 build_filter <- function(template, countries) {

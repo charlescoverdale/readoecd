@@ -16,14 +16,22 @@ OECD_GDP_DATAFLOW        <- "OECD.SDD.NAD,DSD_NAMAIN10@DF_TABLE1,2.0"
 OECD_GDP_FILTER_TEMPLATE <- "A.COUNTRIES...B1GQ.....V.."
 
 parse_gdp <- function(df) {
+  if (nrow(df) == 0) return(empty_oecd_result())
+
   # Prefer USD PPP for cross-country comparability; fall back to whatever is present
-  ppp_codes <- c("USD_PPP", "MNDUSD_PPP", "PC_GDP")
+  ppp_codes <- c("USD_PPP", "MNDUSD_PPP", "USD_EXC", "PC_GDP")
   if ("UNIT_MEASURE" %in% names(df)) {
     avail <- unique(df[["UNIT_MEASURE"]])
     keep  <- intersect(ppp_codes, avail)
     if (length(keep) > 0) {
-      df <- df[df[["UNIT_MEASURE"]] %in% keep[1], ]
-      unit_label <- paste0("Millions ", keep[1], ", current prices")
+      df <- df[df[["UNIT_MEASURE"]] == keep[1], ]
+      unit_label <- switch(keep[1],
+        USD_PPP    = "Millions USD PPP, current prices",
+        MNDUSD_PPP = "Millions USD PPP, current prices",
+        USD_EXC    = "Millions USD (exchange rate), current prices",
+        PC_GDP     = "% of GDP",
+        paste0("Millions ", keep[1], ", current prices")
+      )
     } else {
       unit_label <- "Current prices"
     }
@@ -31,9 +39,12 @@ parse_gdp <- function(df) {
     unit_label <- "Current prices"
   }
 
+  if (nrow(df) == 0) return(empty_oecd_result())
+
+  cname  <- oecd_country_name_col(df)
   result <- data.frame(
     country      = df[["REF_AREA"]],
-    country_name = df[["Reference.area"]],
+    country_name = df[[cname]],
     year         = suppressWarnings(as.integer(df[["TIME_PERIOD"]])),
     series       = "GDP",
     value        = suppressWarnings(as.numeric(df[["OBS_VALUE"]])),
