@@ -20,32 +20,36 @@ There is an existing R package called [OECD](https://cran.r-project.org/package=
 remotes::install_github("charlescoverdale/readoecd")
 ```
 
-## Usage
+## Datasets
 
 ```r
 library(readoecd)
 ```
 
-### GDP
+### `get_oecd_gdp()` — Gross Domestic Product
+
+Source: **OECD National Accounts** (Main Aggregates, Table 1). Annual GDP measured using the expenditure approach at current prices, in millions of US dollars at exchange rates. Coverage is broad — most OECD members have data from the 1990s, some earlier. GDP in USD PPP is used for cross-country comparisons where available; the package falls back to exchange-rate USD if PPP is not published for a given country-year.
 
 ```r
 # Largest OECD economies in the most recent year
 gdp <- get_oecd_gdp("all", start_year = 2015)
 latest <- gdp[gdp$year == max(gdp$year), ]
-head(latest[order(-latest$value), c("country_name", "year", "value")], 10)
-#>         country_name year    value
-#>    United States     2023 27357916
-#>            Japan     2023  4212945
-#>          Germany     2023  4457178
-#>   United Kingdom     2023  3081866
-#>           France     2023  2923489
+head(latest[order(-latest$value), c("country_name", "year", "value")], 5)
+#>        country_name year    value
+#>   United States     2023 27357916
+#>         Germany     2023  4457178
+#>           Japan     2023  4212945
+#>  United Kingdom     2023  3081866
+#>          France     2023  2923489
 
-# GDP growth for G7 countries
+# G7 comparison since 2000
 g7 <- get_oecd_gdp(c("CAN", "FRA", "DEU", "ITA", "JPN", "GBR", "USA"),
                    start_year = 2000)
 ```
 
-### Unemployment
+### `get_oecd_unemployment()` — Unemployment Rate
+
+Source: **OECD Labour Force Statistics** (Harmonised Unemployment Rates). Monthly seasonally-adjusted unemployment rate as a percentage of the labour force, for persons aged 15 and over. The harmonised series adjusts for differences in national survey methodologies, making it the standard series for cross-country comparisons. Coverage varies by country but generally starts from the 1980s–1990s.
 
 ```r
 # Track unemployment through the COVID shock
@@ -60,14 +64,15 @@ aggregate(value ~ country_name, data = peak_2020, FUN = max)
 #>   United States 14.70
 ```
 
-### Tax revenue
+### `get_oecd_tax()` — Tax Revenue
+
+Source: **OECD Revenue Statistics Comparator**. Total tax revenue as a percentage of GDP, covering all levels of government (central, state, and local) and all tax types (income, payroll, property, goods and services, and other taxes). The standard measure of overall tax burden used in cross-country fiscal analysis. Annual data; most countries covered from the early 1990s.
 
 ```r
-# Tax burden comparison: Nordics vs Anglo-Saxon economies
+# Tax burden: Nordics vs Anglo-Saxon economies
 tax <- get_oecd_tax(c("DNK", "SWE", "NOR", "AUS", "GBR", "USA"),
                     start_year = 2010)
 
-# Latest reading for each country
 latest_tax <- tax[tax$year == max(tax$year), c("country_name", "year", "value")]
 latest_tax[order(-latest_tax$value), ]
 #>    country_name year value
@@ -79,7 +84,9 @@ latest_tax[order(-latest_tax$value), ]
 #>   United States 2022  27.7
 ```
 
-### Health expenditure
+### `get_oecd_health()` — Health Expenditure
+
+Source: **System of Health Accounts (SHA)**. Total current health expenditure as a percentage of GDP, covering all financing sources — government schemes, compulsory health insurance, voluntary health insurance, and out-of-pocket payments. Based on the internationally standardised SHA 2011 framework developed jointly by the OECD, WHO, and Eurostat. Annual data; coverage typically from 2000 onwards.
 
 ```r
 # Which OECD country spends the most on health?
@@ -89,81 +96,50 @@ head(latest_hlth[order(-latest_hlth$value), c("country_name", "year", "value")],
 #>    country_name year value
 #>   United States 2022  16.6
 #>         Germany 2022  12.7
-#>     Switzerland 2022  11.3
 #>          France 2022  11.9
+#>     Switzerland 2022  11.3
 #>       Australia 2022   9.7
 ```
-
-### Education expenditure
-
-```r
-# Education spending trends for selected countries
-edu <- get_oecd_education(c("AUS", "GBR", "USA", "KOR", "FIN"),
-                          start_year = 2005)
-```
-
-### Productivity
-
-```r
-# Productivity gap between frontier and laggard OECD economies
-prod <- get_oecd_productivity("all", start_year = 2010)
-latest_prod <- prod[prod$year == max(prod$year), ]
-head(latest_prod[order(-latest_prod$value), c("country_name", "year", "value")], 5)
-```
-
-### Trade (current account)
-
-```r
-# Persistent surplus and deficit countries
-trade <- get_oecd_current_account("all", start_year = 2010)
-latest_trade <- trade[trade$year == max(trade$year), ]
-
-# Largest surpluses
-head(latest_trade[order(-latest_trade$value), c("country_name", "year", "value")], 5)
-
-# Largest deficits
-head(latest_trade[order(latest_trade$value), c("country_name", "year", "value")], 5)
-```
-
-### Utilities
-
-```r
-# See all available country codes
-list_oecd_countries()
-
-# Clear the local cache to force fresh downloads
-clear_oecd_cache()
-```
-
-## Datasets
-
-### `get_oecd_gdp()` — Gross Domestic Product
-
-Source: **OECD National Accounts** (Main Aggregates, Table 1). Annual GDP measured using the expenditure approach at current prices, in millions of US dollars at exchange rates. Coverage is broad — most OECD members have data from the 1990s, some earlier. GDP in USD PPP is used for cross-country comparisons where available; the package falls back to exchange-rate USD if PPP is not published for a given country-year.
-
-### `get_oecd_unemployment()` — Unemployment Rate
-
-Source: **OECD Labour Force Statistics** (Harmonised Unemployment Rates). Monthly seasonally-adjusted unemployment rate as a percentage of the labour force, for persons aged 15 and over. The harmonised series adjusts for differences in national survey methodologies, making it the standard series for cross-country comparisons. Coverage varies by country but generally starts from the 1980s–1990s.
-
-### `get_oecd_tax()` — Tax Revenue
-
-Source: **OECD Revenue Statistics Comparator**. Total tax revenue as a percentage of GDP, covering all levels of government (central, state, and local) and all tax types (income, payroll, property, goods and services, and other taxes). The standard measure of overall tax burden used in cross-country fiscal analysis. Annual data; most countries covered from the early 1990s.
-
-### `get_oecd_health()` — Health Expenditure
-
-Source: **System of Health Accounts (SHA)**. Total current health expenditure as a percentage of GDP, covering all financing sources — government schemes, compulsory health insurance, voluntary health insurance, and out-of-pocket payments. Based on the internationally standardised SHA 2011 framework developed jointly by the OECD, WHO, and Eurostat. Annual data; coverage typically from 2000 onwards.
 
 ### `get_oecd_education()` — Education Expenditure
 
 Source: **Education at a Glance (EAG) — UOE Finance indicators**. Total expenditure on educational institutions as a percentage of GDP, aggregated across all levels of education (ISCED 0–8, from early childhood through tertiary). Covers both public and private expenditure. Published annually; data typically available with a two-year lag, covering most OECD members from the mid-2000s.
 
+```r
+# Education spending trends across selected countries
+edu <- get_oecd_education(c("AUS", "GBR", "USA", "KOR", "FIN"),
+                          start_year = 2005)
+
+latest_edu <- edu[edu$year == max(edu$year), c("country_name", "year", "value")]
+latest_edu[order(-latest_edu$value), ]
+```
+
 ### `get_oecd_productivity()` — Labour Productivity
 
 Source: **OECD Productivity Database (PDB)**. GDP per hour worked in USD PPP where available, falling back to GDP per capita. GDP per hour worked is the standard measure of labour productivity used for cross-country comparisons, as it adjusts for differences in average working hours across countries. Annual data; coverage varies by country.
 
+```r
+# Productivity rankings across all OECD members
+prod <- get_oecd_productivity("all", start_year = 2010)
+latest_prod <- prod[prod$year == max(prod$year), ]
+head(latest_prod[order(-latest_prod$value), c("country_name", "year", "value")], 5)
+```
+
 ### `get_oecd_current_account()` — Current Account Balance
 
 Source: **OECD Balance of Payments Statistics**. Annual current account balance with the rest of the world, in millions of US dollars at current exchange rates. A positive value indicates a surplus (exports exceeding imports of goods, services, income, and transfers); a negative value indicates a deficit. Coverage is annual; most countries available from the 1990s.
+
+```r
+# Identify persistent surplus and deficit countries
+ca <- get_oecd_current_account("all", start_year = 2010)
+latest_ca <- ca[ca$year == max(ca$year), ]
+
+# Largest surpluses
+head(latest_ca[order(-latest_ca$value), c("country_name", "year", "value")], 5)
+
+# Largest deficits
+head(latest_ca[order(latest_ca$value), c("country_name", "year", "value")], 5)
+```
 
 ## Utility functions
 
@@ -172,6 +148,14 @@ Source: **OECD Balance of Payments Statistics**. Annual current account balance 
 | `list_oecd_countries()` | List all 38 OECD member country codes and names |
 | `check_oecd_api()` | Test connectivity to the OECD API |
 | `clear_oecd_cache()` | Delete all locally cached data files |
+
+```r
+# See all available country codes
+list_oecd_countries()
+
+# Clear the local cache to force fresh downloads
+clear_oecd_cache()
+```
 
 ## Output
 
