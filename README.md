@@ -24,33 +24,114 @@ remotes::install_github("charlescoverdale/readoecd")
 
 ```r
 library(readoecd)
+```
 
-# Annual GDP — Australia, UK, and USA since 2010
-gdp <- get_oecd_gdp(c("AUS", "GBR", "USA"), start_year = 2010)
-head(gdp)
-#>   country country_name year series        value                                    unit
-#> 1     AUS    Australia 2010    GDP    900232.00 Millions USD (exchange rate), current prices
-#> 2     AUS    Australia 2011    GDP   1389477.00 Millions USD (exchange rate), current prices
+### GDP
 
-# Monthly unemployment rates since 2015
-unemp <- get_oecd_unemployment(c("AUS", "GBR"), start_year = 2015)
-head(unemp)
-#>   country country_name  period            series value               unit
-#> 1     AUS    Australia 2015-01 Unemployment rate   6.2 % of labour force
+```r
+# Largest OECD economies in the most recent year
+gdp <- get_oecd_gdp("all", start_year = 2015)
+latest <- gdp[gdp$year == max(gdp$year), ]
+head(latest[order(-latest$value), c("country_name", "year", "value")], 10)
+#>         country_name year    value
+#>    United States     2023 27357916
+#>            Japan     2023  4212945
+#>          Germany     2023  4457178
+#>   United Kingdom     2023  3081866
+#>           France     2023  2923489
 
-# Tax revenue, health and education spending as % of GDP
-tax  <- get_oecd_tax(c("AUS", "GBR", "USA"), start_year = 2000)
-hlth <- get_oecd_health(c("AUS", "GBR", "USA"), start_year = 2000)
-edu  <- get_oecd_education(c("AUS", "GBR", "USA"), start_year = 2000)
+# GDP growth for G7 countries
+g7 <- get_oecd_gdp(c("CAN", "FRA", "DEU", "ITA", "JPN", "GBR", "USA"),
+                   start_year = 2000)
+```
 
-# Labour productivity and trade balance
-prod  <- get_oecd_productivity(c("AUS", "DEU", "USA"), start_year = 2000)
-trade <- get_oecd_trade(c("AUS", "DEU", "USA"), start_year = 2000)
+### Unemployment
 
+```r
+# Track unemployment through the COVID shock
+unemp <- get_oecd_unemployment(c("AUS", "GBR", "USA"), start_year = 2018)
+
+# Peak unemployment by country during 2020
+peak_2020 <- unemp[substr(unemp$period, 1, 4) == "2020", ]
+aggregate(value ~ country_name, data = peak_2020, FUN = max)
+#>    country_name value
+#>       Australia  7.47
+#>  United Kingdom  5.10
+#>   United States 14.70
+```
+
+### Tax revenue
+
+```r
+# Tax burden comparison: Nordics vs Anglo-Saxon economies
+tax <- get_oecd_tax(c("DNK", "SWE", "NOR", "AUS", "GBR", "USA"),
+                    start_year = 2010)
+
+# Latest reading for each country
+latest_tax <- tax[tax$year == max(tax$year), c("country_name", "year", "value")]
+latest_tax[order(-latest_tax$value), ]
+#>    country_name year value
+#>         Denmark 2022  46.0
+#>          Sweden 2022  42.6
+#>          Norway 2022  42.2
+#>  United Kingdom 2022  35.3
+#>       Australia 2022  29.5
+#>   United States 2022  27.7
+```
+
+### Health expenditure
+
+```r
+# Which OECD country spends the most on health?
+health <- get_oecd_health("all", start_year = 2015)
+latest_hlth <- health[health$year == max(health$year), ]
+head(latest_hlth[order(-latest_hlth$value), c("country_name", "year", "value")], 5)
+#>    country_name year value
+#>   United States 2022  16.6
+#>         Germany 2022  12.7
+#>     Switzerland 2022  11.3
+#>          France 2022  11.9
+#>       Australia 2022   9.7
+```
+
+### Education expenditure
+
+```r
+# Education spending trends for selected countries
+edu <- get_oecd_education(c("AUS", "GBR", "USA", "KOR", "FIN"),
+                          start_year = 2005)
+```
+
+### Productivity
+
+```r
+# Productivity gap between frontier and laggard OECD economies
+prod <- get_oecd_productivity("all", start_year = 2010)
+latest_prod <- prod[prod$year == max(prod$year), ]
+head(latest_prod[order(-latest_prod$value), c("country_name", "year", "value")], 5)
+```
+
+### Trade (current account)
+
+```r
+# Persistent surplus and deficit countries
+trade <- get_oecd_trade("all", start_year = 2010)
+latest_trade <- trade[trade$year == max(trade$year), ]
+
+# Largest surpluses
+head(latest_trade[order(-latest_trade$value), c("country_name", "year", "value")], 5)
+
+# Largest deficits
+head(latest_trade[order(latest_trade$value), c("country_name", "year", "value")], 5)
+```
+
+### Utilities
+
+```r
 # See all available country codes
 list_oecd_countries()
 
-# Clear the local cache
+# Clear the local cache to force fresh downloads
 clear_oecd_cache()
 ```
 
