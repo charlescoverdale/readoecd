@@ -1,5 +1,7 @@
 # readoecd
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 **readoecd** provides clean, tidy access to OECD economic data directly from R.
 
 ## Background: the existing OECD package
