@@ -17,9 +17,11 @@ There is an existing R package called [OECD](https://cran.r-project.org/package=
 ## Installation
 
 ```r
-# Install from GitHub (CRAN submission in progress)
-# install.packages("remotes")
-remotes::install_github("charlescoverdale/readoecd")
+install.packages("readoecd")
+
+# Or install the development version from GitHub
+# install.packages("devtools")
+devtools::install_github("charlescoverdale/readoecd")
 ```
 
 ## Looking for a specific dataset or variable treatment?
