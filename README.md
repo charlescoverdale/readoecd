@@ -1,6 +1,6 @@
 # readoecd
 
-[![CRAN status](https://www.r-pkg.org/badges/version/readoecd)](https://CRAN.R-project.org/package=readoecd) [![CRAN downloads](https://cranlogs.r-pkg.org/badges/readoecd)](https://cran.r-project.org/package=readoecd) [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![CRAN status](https://www.r-pkg.org/badges/version/readoecd)](https://CRAN.R-project.org/package=readoecd) [![R-CMD-check](https://github.com/charlescoverdale/readoecd/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/charlescoverdale/readoecd/actions/workflows/R-CMD-check.yaml) [![CRAN downloads](https://cranlogs.r-pkg.org/badges/readoecd)](https://cran.r-project.org/package=readoecd) [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 **readoecd** provides clean, tidy access to OECD economic data directly from R.
 
@@ -239,6 +239,24 @@ Downloaded data is stored in your user cache directory (`tools::R_user_dir("read
 ## API stability
 
 readoecd uses the OECD Data Explorer REST API (`sdmx.oecd.org`). The OECD periodically migrates dataset identifiers - if a function stops working, check for a package update or [file an issue](https://github.com/charlescoverdale/readoecd/issues).
+
+## Related packages
+
+The **readoecd** package is part of a suite of R packages for economic and financial data:
+
+| Package | What it covers |
+|---|---|
+| [`ons`](https://github.com/charlescoverdale/ons) | ONS data (GDP, inflation, unemployment, wages, trade, house prices, population) |
+| [`boe`](https://github.com/charlescoverdale/boe) | Bank of England data (Bank Rate, SONIA, gilt yields, exchange rates, mortgage rates) |
+| [`hmrc`](https://github.com/charlescoverdale/hmrc) | HMRC tax receipts, corporation tax, stamp duty, R&D credits, and tax gap data |
+| [`obr`](https://github.com/charlescoverdale/obr) | OBR fiscal forecasts and the Public Finances Databank |
+| [`readecb`](https://github.com/charlescoverdale/readecb) | European Central Bank data (policy rates, HICP, exchange rates, yield curves) |
+| [`fred`](https://github.com/charlescoverdale/fred) | US Federal Reserve (FRED) data (800,000+ economic time series) |
+| [`inflateR`](https://github.com/charlescoverdale/inflateR) | Adjust values for inflation using CPI or GDP deflator data |
+
+## Keywords
+
+OECD, SDMX, international economic data, GDP, unemployment, trade, education, health, environment, OECD Data Explorer, open data, cross-country comparison, R package
 
 ## License
 

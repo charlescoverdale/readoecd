@@ -1,0 +1,43 @@
+url: https://charlescoverdale.github.io/readoecd/
+
+template:
+  bootstrap: 5
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [search, github]
+  components:
+    github:
+      icon: fa-github
+      href: https://github.com/charlescoverdale/readoecd
+
+reference:
+  - title: "Economic Indicators"
+    desc: "Download key OECD economic datasets"
+    contents:
+      - get_oecd_gdp
+      - get_oecd_cpi
+      - get_oecd_unemployment
+      - get_oecd_tax
+      - get_oecd_deficit
+
+  - title: "Social Indicators"
+    desc: "Download OECD social and structural datasets"
+    contents:
+      - get_oecd_health
+      - get_oecd_education
+      - get_oecd_inequality
+
+  - title: "Productivity & Trade"
+    desc: "Download OECD productivity and trade datasets"
+    contents:
+      - get_oecd_productivity
+      - get_oecd_current_account
+
+  - title: "Utilities"
+    desc: "Helper functions for managing countries, connectivity, and cache"
+    contents:
+      - list_oecd_countries
+      - check_oecd_api
+      - clear_oecd_cache
