@@ -1,6 +1,6 @@
 # readoecd
 
-[![CRAN status](https://www.r-pkg.org/badges/version/readoecd)](https://CRAN.R-project.org/package=readoecd) [![R-CMD-check](https://github.com/charlescoverdale/readoecd/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/charlescoverdale/readoecd/actions/workflows/R-CMD-check.yaml) [![CRAN downloads](https://cranlogs.r-pkg.org/badges/readoecd)](https://cran.r-project.org/package=readoecd) [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![CRAN status](https://www.r-pkg.org/badges/version/readoecd)](https://CRAN.R-project.org/package=readoecd) [![CRAN downloads](https://cranlogs.r-pkg.org/badges/readoecd)](https://cran.r-project.org/package=readoecd) [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 **readoecd** provides clean, tidy access to OECD economic data directly from R.
 
