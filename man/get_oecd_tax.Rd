@@ -38,3 +38,8 @@ head(tax)
 }
 
 }
+\seealso{
+Other fiscal: 
+\code{\link{get_oecd_deficit}()}
+}
+\concept{fiscal}

@@ -90,6 +90,7 @@ parse_gdp <- function(df) {
 #' head(latest[order(-latest$value), c("country_name", "value")], 10)
 #' }
 #'
+#' @family economic indicators
 #' @export
 get_oecd_gdp <- function(countries = "all", start_year = 1990,
                           refresh = FALSE) {

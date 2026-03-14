@@ -74,6 +74,7 @@ parse_health <- function(df) {
 #' head(health)
 #' }
 #'
+#' @family social indicators
 #' @export
 get_oecd_health <- function(countries = "all", start_year = 1990,
                             refresh = FALSE) {

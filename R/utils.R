@@ -130,6 +130,7 @@ build_filter <- function(template, countries) {
 #' @examples
 #' list_oecd_countries()
 #'
+#' @family utilities
 #' @export
 list_oecd_countries <- function() {
   data.frame(
@@ -181,6 +182,7 @@ validate_countries <- function(countries) {
 #' check_oecd_api()
 #' }
 #'
+#' @family utilities
 #' @export
 check_oecd_api <- function() {
   url <- paste0(
@@ -213,6 +215,7 @@ check_oecd_api <- function() {
 #' clear_oecd_cache()
 #' }
 #'
+#' @family utilities
 #' @export
 clear_oecd_cache <- function() {
   d <- oecd_cache_dir()

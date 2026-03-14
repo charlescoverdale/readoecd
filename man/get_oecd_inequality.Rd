@@ -44,3 +44,9 @@ head(gini)
 }
 
 }
+\seealso{
+Other social indicators: 
+\code{\link{get_oecd_education}()},
+\code{\link{get_oecd_health}()}
+}
+\concept{social indicators}

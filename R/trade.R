@@ -87,6 +87,7 @@ parse_trade <- function(df) {
 #' head(trade)
 #' }
 #'
+#' @family productivity and trade
 #' @export
 get_oecd_current_account <- function(countries = "all", start_year = 1990,
                            refresh = FALSE) {

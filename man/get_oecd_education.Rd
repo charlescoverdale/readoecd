@@ -44,3 +44,9 @@ head(edu)
 }
 
 }
+\seealso{
+Other social indicators: 
+\code{\link{get_oecd_health}()},
+\code{\link{get_oecd_inequality}()}
+}
+\concept{social indicators}

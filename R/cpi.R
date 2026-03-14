@@ -62,6 +62,7 @@ parse_cpi <- function(df) {
 #' head(cpi)
 #' }
 #'
+#' @family economic indicators
 #' @export
 get_oecd_cpi <- function(countries = "all", start_year = 1990,
                          refresh = FALSE) {

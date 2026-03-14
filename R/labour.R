@@ -90,6 +90,7 @@ parse_unemployment <- function(df) {
 #' head(une2020_avg[order(-une2020_avg$value), ], 5)
 #' }
 #'
+#' @family economic indicators
 #' @export
 get_oecd_unemployment <- function(countries = "all",
                                   start_year = 2000,

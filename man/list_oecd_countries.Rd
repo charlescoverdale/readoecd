@@ -21,3 +21,9 @@ alpha-3 codes and English names. No network call is required.
 list_oecd_countries()
 
 }
+\seealso{
+Other utilities: 
+\code{\link{check_oecd_api}()},
+\code{\link{clear_oecd_cache}()}
+}
+\concept{utilities}

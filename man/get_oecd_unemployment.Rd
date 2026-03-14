@@ -51,3 +51,9 @@ head(une2020_avg[order(-une2020_avg$value), ], 5)
 }
 
 }
+\seealso{
+Other economic indicators: 
+\code{\link{get_oecd_cpi}()},
+\code{\link{get_oecd_gdp}()}
+}
+\concept{economic indicators}

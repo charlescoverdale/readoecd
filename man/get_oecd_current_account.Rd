@@ -45,3 +45,8 @@ head(trade)
 }
 
 }
+\seealso{
+Other productivity and trade: 
+\code{\link{get_oecd_productivity}()}
+}
+\concept{productivity and trade}

@@ -42,3 +42,8 @@ head(prod)
 }
 
 }
+\seealso{
+Other productivity and trade: 
+\code{\link{get_oecd_current_account}()}
+}
+\concept{productivity and trade}

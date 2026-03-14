@@ -100,6 +100,7 @@ parse_productivity <- function(df) {
 #' head(prod)
 #' }
 #'
+#' @family productivity and trade
 #' @export
 get_oecd_productivity <- function(countries = "all", start_year = 1990,
                                   refresh = FALSE) {

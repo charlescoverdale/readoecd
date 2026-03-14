@@ -68,6 +68,7 @@ parse_deficit <- function(df) {
 #' head(deficit)
 #' }
 #'
+#' @family fiscal
 #' @export
 get_oecd_deficit <- function(countries = "all", start_year = 1990,
                              refresh = FALSE) {

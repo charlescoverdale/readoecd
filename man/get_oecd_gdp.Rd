@@ -46,3 +46,9 @@ head(latest[order(-latest$value), c("country_name", "value")], 10)
 }
 
 }
+\seealso{
+Other economic indicators: 
+\code{\link{get_oecd_cpi}()},
+\code{\link{get_oecd_unemployment}()}
+}
+\concept{economic indicators}

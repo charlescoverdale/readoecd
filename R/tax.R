@@ -68,6 +68,7 @@ parse_tax <- function(df) {
 #' head(tax)
 #' }
 #'
+#' @family fiscal
 #' @export
 get_oecd_tax <- function(countries = "all", start_year = 1990,
                          refresh = FALSE) {

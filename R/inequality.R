@@ -93,6 +93,7 @@ parse_inequality <- function(df) {
 #' head(gini)
 #' }
 #'
+#' @family social indicators
 #' @export
 get_oecd_inequality <- function(countries = "all", start_year = 1990,
                                 refresh = FALSE) {

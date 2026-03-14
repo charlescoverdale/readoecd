@@ -43,3 +43,9 @@ head(cpi)
 }
 
 }
+\seealso{
+Other economic indicators: 
+\code{\link{get_oecd_gdp}()},
+\code{\link{get_oecd_unemployment}()}
+}
+\concept{economic indicators}

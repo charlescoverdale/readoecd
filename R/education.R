@@ -74,6 +74,7 @@ parse_education <- function(df) {
 #' head(edu)
 #' }
 #'
+#' @family social indicators
 #' @export
 get_oecd_education <- function(countries = "all", start_year = 1990,
                                refresh = FALSE) {
