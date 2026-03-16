@@ -1,46 +1,37 @@
-# CRAN submission comments — readoecd 0.3.0
+# CRAN submission comments — readoecd 0.3.1
+
+## Resubmission
+
+This is an update to readoecd 0.3.0 (currently on CRAN). Changes made in
+response to CRAN feedback (Prof Ripley, 2026-03-15):
+
+* Examples now cache to `tempdir()` instead of the user's home directory,
+  fixing CRAN policy compliance for `\donttest` examples.
+* Cache directory is now configurable via `options(readoecd.cache_dir = ...)`.
 
 ## R CMD check results
 
-0 errors | 0 warnings | 3 notes
+0 errors | 0 warnings | 0 notes
 
 Checked on: macOS Sequoia 15.6.1 (aarch64), R 4.5.2.
-Also submitted to win-builder (R-devel and R-release).
-
-### Note 1: New submission
-
-Expected for a first CRAN submission.
-
-### Note 2: pandoc not available
-
-> Files 'README.md' or 'NEWS.md' cannot be checked without 'pandoc' being installed.
-
-This is a local environment issue — pandoc is not installed in the check environment.
-README.md and NEWS.md are both well-formed Markdown. CRAN's servers have pandoc installed.
-
-### Note 3: HTML Tidy version
-
-> Skipping checking HTML validation: 'tidy' doesn't look like recent enough HTML Tidy.
-
-This is a local environment issue — the installed HTML Tidy binary is older than required
-for the check. CRAN's servers have a recent version of HTML Tidy.
 
 ## Network-dependent examples and tests
 
-All examples that make live API calls are wrapped in `\donttest{}`. The single exception,
-`check_oecd_api()`, uses `\dontrun{}` as it is a connectivity diagnostic whose outcome
-depends on real-time API availability.
+All examples that make live API calls are wrapped in `\donttest{}`, with
+caching redirected to `tempdir()` so that no files are written to the user's
+home filespace. The single exception, `check_oecd_api()`, uses `\dontrun{}`
+as it is a connectivity diagnostic whose outcome depends on real-time API
+availability.
 
-All network-dependent tests use `skip_on_cran()` and `skip_if_offline()`, so the test
-suite passes cleanly on CRAN without any network calls.
-
-## Spell check
-
-`devtools::spell_check()` flags only legitimate technical terms and proper nouns:
-COICOP, EAG, Gini, IDD, ISCED, NAAG, OECD, PDB, SDMX, SNA, UOE — all standard
-abbreviations used by the OECD in their official documentation.
+All network-dependent tests use `skip_on_cran()` and `skip_if_offline()`, so
+the test suite passes cleanly on CRAN without any network calls.
 
 ## OECD API
 
-Data is downloaded from the OECD Data Explorer REST API (sdmx.oecd.org). This is the
-official public API provided by the OECD. No authentication or API key is required.
+Data is downloaded from the OECD Data Explorer REST API (sdmx.oecd.org). This
+is the official public API provided by the OECD. No authentication or API key
+is required.
+
+## Downstream dependencies
+
+None.
