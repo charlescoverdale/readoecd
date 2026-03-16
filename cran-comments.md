@@ -1,13 +1,14 @@
-# CRAN submission comments — readoecd 0.3.1
+# CRAN submission comments — readoecd 0.3.2
 
 ## Resubmission
 
-This is an update to readoecd 0.3.0 (currently on CRAN). Changes made in
-response to CRAN feedback (Prof Ripley, 2026-03-15):
+This is an update to readoecd 0.3.0 (currently on CRAN), addressing CRAN
+feedback (Prof Ripley, 2026-03-15).
 
 * Examples now cache to `tempdir()` instead of the user's home directory,
   fixing CRAN policy compliance for `\donttest` examples.
 * Cache directory is now configurable via `options(readoecd.cache_dir = ...)`.
+* Removed non-existent pkgdown URL from DESCRIPTION (was returning 404).
 
 ## R CMD check results
 

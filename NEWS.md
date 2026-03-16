@@ -1,3 +1,7 @@
+# readoecd 0.3.2
+
+* Removed non-existent pkgdown URL from DESCRIPTION.
+
 # readoecd 0.3.1
 
 * Examples now cache to `tempdir()` instead of the user's home directory,
