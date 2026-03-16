@@ -96,8 +96,10 @@ parse_productivity <- function(df) {
 #'
 #' @examples
 #' \donttest{
+#' op <- options(readoecd.cache_dir = tempdir())
 #' prod <- get_oecd_productivity(c("AUS", "GBR", "USA"), start_year = 2000)
 #' head(prod)
+#' options(op)
 #' }
 #'
 #' @family productivity and trade

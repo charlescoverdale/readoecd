@@ -16,7 +16,9 @@ from the OECD API.
 }
 \examples{
 \donttest{
+op <- options(readoecd.cache_dir = tempdir())
 clear_oecd_cache()
+options(op)
 }
 
 }

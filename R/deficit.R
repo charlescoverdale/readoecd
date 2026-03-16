@@ -64,8 +64,10 @@ parse_deficit <- function(df) {
 #'
 #' @examples
 #' \donttest{
+#' op <- options(readoecd.cache_dir = tempdir())
 #' deficit <- get_oecd_deficit(c("AUS", "GBR", "USA"), start_year = 2000)
 #' head(deficit)
+#' options(op)
 #' }
 #'
 #' @family fiscal

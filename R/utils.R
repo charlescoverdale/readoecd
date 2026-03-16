@@ -4,7 +4,7 @@ OECD_API_BASE <- "https://sdmx.oecd.org/public/rest/data"
 
 # Cache directory (base R, no rappdirs)
 oecd_cache_dir <- function() {
-  tools::R_user_dir("readoecd", "cache")
+  getOption("readoecd.cache_dir", default = tools::R_user_dir("readoecd", "cache"))
 }
 
 # Build cache file path from dataset + countries + start_year
@@ -212,7 +212,9 @@ check_oecd_api <- function() {
 #'
 #' @examples
 #' \donttest{
+#' op <- options(readoecd.cache_dir = tempdir())
 #' clear_oecd_cache()
+#' options(op)
 #' }
 #'
 #' @family utilities

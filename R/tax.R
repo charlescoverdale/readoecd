@@ -64,8 +64,10 @@ parse_tax <- function(df) {
 #'
 #' @examples
 #' \donttest{
+#' op <- options(readoecd.cache_dir = tempdir())
 #' tax <- get_oecd_tax(c("AUS", "GBR", "USA"), start_year = 2000)
 #' head(tax)
+#' options(op)
 #' }
 #'
 #' @family fiscal

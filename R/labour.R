@@ -78,6 +78,7 @@ parse_unemployment <- function(df) {
 #'
 #' @examples
 #' \donttest{
+#' op <- options(readoecd.cache_dir = tempdir())
 #' # All OECD members since 2010
 #' une <- get_oecd_unemployment(start_year = 2010)
 #'
@@ -88,6 +89,7 @@ parse_unemployment <- function(df) {
 #' une2020 <- une[startsWith(une$period, "2020"), ]
 #' une2020_avg <- aggregate(value ~ country_name, une2020, mean)
 #' head(une2020_avg[order(-une2020_avg$value), ], 5)
+#' options(op)
 #' }
 #'
 #' @family economic indicators

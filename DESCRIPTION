@@ -1,6 +1,6 @@
 Package: readoecd
 Title: Download and Tidy Data from the 'OECD'
-Version: 0.3.0
+Version: 0.3.1
 Authors@R: person("Charles", "Coverdale", email = "charlesfcoverdale@gmail.com",
     role = c("aut", "cre"))
 Description: Provides clean, tidy access to key economic indicators published

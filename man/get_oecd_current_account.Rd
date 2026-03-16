@@ -40,8 +40,10 @@ deficit.
 }
 \examples{
 \donttest{
+op <- options(readoecd.cache_dir = tempdir())
 trade <- get_oecd_current_account(c("AUS", "DEU", "USA"), start_year = 2000)
 head(trade)
+options(op)
 }
 
 }

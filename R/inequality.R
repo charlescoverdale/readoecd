@@ -89,8 +89,10 @@ parse_inequality <- function(df) {
 #'
 #' @examples
 #' \donttest{
+#' op <- options(readoecd.cache_dir = tempdir())
 #' gini <- get_oecd_inequality(c("AUS", "GBR", "USA", "DNK"), start_year = 2000)
 #' head(gini)
+#' options(op)
 #' }
 #'
 #' @family social indicators

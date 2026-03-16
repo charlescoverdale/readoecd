@@ -38,8 +38,10 @@ harmonised measure of headline inflation used for cross-country comparisons.
 }
 \examples{
 \donttest{
+op <- options(readoecd.cache_dir = tempdir())
 cpi <- get_oecd_cpi(c("AUS", "GBR", "USA"), start_year = 2000)
 head(cpi)
+options(op)
 }
 
 }

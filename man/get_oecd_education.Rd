@@ -39,8 +39,10 @@ expressed as a percentage of GDP.
 }
 \examples{
 \donttest{
+op <- options(readoecd.cache_dir = tempdir())
 edu <- get_oecd_education(c("AUS", "GBR", "USA"), start_year = 2000)
 head(edu)
+options(op)
 }
 
 }

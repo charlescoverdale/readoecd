@@ -1,3 +1,9 @@
+# readoecd 0.3.1
+
+* Examples now cache to `tempdir()` instead of the user's home directory,
+  fixing CRAN policy compliance for `\donttest` examples.
+* Cache directory is now configurable via `options(readoecd.cache_dir = ...)`.
+
 # readoecd 0.3.0
 
 * Added `get_oecd_cpi()` — annual CPI inflation rate, year-on-year (OECD Prices database).
