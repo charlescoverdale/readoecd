@@ -38,8 +38,8 @@ parities), falling back to GDP per capita. Values are at current prices.
 \examples{
 \donttest{
 op <- options(readoecd.cache_dir = tempdir())
-prod <- get_oecd_productivity(c("AUS", "GBR", "USA"), start_year = 2000)
-head(prod)
+prod <- try(get_oecd_productivity(c("AUS", "GBR", "USA"), start_year = 2000))
+if (!inherits(prod, "try-error")) head(prod)
 options(op)
 }
 

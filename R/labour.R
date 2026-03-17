@@ -80,15 +80,17 @@ parse_unemployment <- function(df) {
 #' \donttest{
 #' op <- options(readoecd.cache_dir = tempdir())
 #' # All OECD members since 2010
-#' une <- get_oecd_unemployment(start_year = 2010)
+#' une <- try(get_oecd_unemployment(start_year = 2010))
 #'
 #' # Australia and UK since 2020
-#' une <- get_oecd_unemployment(c("AUS", "GBR"), start_year = 2020)
+#' une <- try(get_oecd_unemployment(c("AUS", "GBR"), start_year = 2020))
 #'
-#' # Which country had the highest unemployment in 2020?
-#' une2020 <- une[startsWith(une$period, "2020"), ]
-#' une2020_avg <- aggregate(value ~ country_name, une2020, mean)
-#' head(une2020_avg[order(-une2020_avg$value), ], 5)
+#' if (!inherits(une, "try-error")) {
+#'   # Which country had the highest unemployment in 2020?
+#'   une2020 <- une[startsWith(une$period, "2020"), ]
+#'   une2020_avg <- aggregate(value ~ country_name, une2020, mean)
+#'   head(une2020_avg[order(-une2020_avg$value), ], 5)
+#' }
 #' options(op)
 #' }
 #'

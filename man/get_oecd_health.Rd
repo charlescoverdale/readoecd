@@ -40,8 +40,8 @@ current prices.
 \examples{
 \donttest{
 op <- options(readoecd.cache_dir = tempdir())
-health <- get_oecd_health(c("AUS", "GBR", "USA"), start_year = 2000)
-head(health)
+health <- try(get_oecd_health(c("AUS", "GBR", "USA"), start_year = 2000))
+if (!inherits(health, "try-error")) head(health)
 options(op)
 }
 

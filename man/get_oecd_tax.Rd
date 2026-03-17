@@ -34,8 +34,8 @@ countries from the OECD Revenue Statistics Comparator database.
 \examples{
 \donttest{
 op <- options(readoecd.cache_dir = tempdir())
-tax <- get_oecd_tax(c("AUS", "GBR", "USA"), start_year = 2000)
-head(tax)
+tax <- try(get_oecd_tax(c("AUS", "GBR", "USA"), start_year = 2000))
+if (!inherits(tax, "try-error")) head(tax)
 options(op)
 }
 

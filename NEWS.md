@@ -1,3 +1,8 @@
+# readoecd 0.3.3
+
+* Examples now wrapped in `try()` to handle transient OECD API failures
+  gracefully during CRAN checks.
+
 # readoecd 0.3.2
 
 * Removed non-existent pkgdown URL from DESCRIPTION.

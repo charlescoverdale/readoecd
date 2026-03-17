@@ -40,8 +40,8 @@ where available for consistency across countries and time.
 \examples{
 \donttest{
 op <- options(readoecd.cache_dir = tempdir())
-gini <- get_oecd_inequality(c("AUS", "GBR", "USA", "DNK"), start_year = 2000)
-head(gini)
+gini <- try(get_oecd_inequality(c("AUS", "GBR", "USA", "DNK"), start_year = 2000))
+if (!inherits(gini, "try-error")) head(gini)
 options(op)
 }
 

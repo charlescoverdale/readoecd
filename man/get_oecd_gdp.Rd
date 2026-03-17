@@ -39,11 +39,13 @@ purchasing power parities (PPPs) where available.
 \examples{
 \donttest{
 op <- options(readoecd.cache_dir = tempdir())
-gdp <- get_oecd_gdp(c("AUS", "GBR", "USA"), start_year = 2010)
+gdp <- try(get_oecd_gdp(c("AUS", "GBR", "USA"), start_year = 2010))
 
-# Largest OECD economies
-latest <- gdp[gdp$year == max(gdp$year), ]
-head(latest[order(-latest$value), c("country_name", "value")], 10)
+if (!inherits(gdp, "try-error")) {
+  # Largest OECD economies
+  latest <- gdp[gdp$year == max(gdp$year), ]
+  head(latest[order(-latest$value), c("country_name", "value")], 10)
+}
 options(op)
 }
 

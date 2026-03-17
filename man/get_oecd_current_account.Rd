@@ -41,8 +41,8 @@ deficit.
 \examples{
 \donttest{
 op <- options(readoecd.cache_dir = tempdir())
-trade <- get_oecd_current_account(c("AUS", "DEU", "USA"), start_year = 2000)
-head(trade)
+trade <- try(get_oecd_current_account(c("AUS", "DEU", "USA"), start_year = 2000))
+if (!inherits(trade, "try-error")) head(trade)
 options(op)
 }
 
