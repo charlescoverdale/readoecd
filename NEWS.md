@@ -1,3 +1,8 @@
+# readoecd 0.3.4
+
+* Fixed incorrect function name in NEWS.md (`get_oecd_trade` corrected to
+  `get_oecd_current_account`).
+
 # readoecd 0.3.3
 
 * Examples now wrapped in `try()` to handle transient OECD API failures
@@ -26,7 +31,7 @@
 * Added `get_oecd_health()` — total health expenditure as % of GDP (SHA database).
 * Added `get_oecd_education()` — total education expenditure as % of GDP (EAG UOE Finance).
 * Added `get_oecd_productivity()` — GDP per hour worked or per capita (OECD PDB).
-* Added `get_oecd_trade()` — annual current account balance in USD (OECD BOP).
+* Added `get_oecd_current_account()` — annual current account balance in USD (OECD BOP).
 
 # readoecd 0.1.0
 
