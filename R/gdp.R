@@ -100,7 +100,7 @@ get_oecd_gdp <- function(countries = "all", start_year = 1990,
                           refresh = FALSE) {
   countries <- validate_countries(countries)
   filter    <- build_filter(OECD_GDP_FILTER_TEMPLATE, countries)
-  tag       <- if (identical(countries, NULL)) "gdp_all" else
+  tag       <- if (is.null(countries)) "gdp_all" else
     paste0("gdp_", paste(sort(countries), collapse = "_"))
   raw    <- oecd_fetch(OECD_GDP_DATAFLOW, filter, tag, start_year, refresh)
   result <- parse_gdp(raw)

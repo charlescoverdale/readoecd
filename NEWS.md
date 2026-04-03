@@ -2,6 +2,9 @@
 
 * Fixed incorrect function name in NEWS.md (`get_oecd_trade` corrected to
   `get_oecd_current_account`).
+* Fixed cache tag bug in `get_oecd_unemployment()` when requesting all
+  countries.
+* Standardised NULL check pattern across all data functions.
 
 # readoecd 0.3.3
 

@@ -101,7 +101,7 @@ get_oecd_unemployment <- function(countries = "all",
                                   refresh    = FALSE) {
   countries <- validate_countries(countries)
   filter    <- build_filter(OECD_UNE_FILTER_TEMPLATE, countries)
-  tag       <- if (identical(countries, "all")) "une_all" else
+  tag       <- if (is.null(countries)) "une_all" else
     paste0("une_", paste(sort(countries), collapse = "_"))
 
   raw    <- oecd_fetch(OECD_UNE_DATAFLOW, filter, tag, start_year, refresh)
