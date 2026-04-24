@@ -2,6 +2,8 @@
 
 > Provides clean, tidy access to key economic indicators published by the 'Organisation for Economic Co-operation and Development' ('OECD'), covering GDP, CPI inflation, unemployment, tax revenue, go... Install with `install.packages("readoecd")`.
 
+Full API reference (for agents): https://raw.githubusercontent.com/charlescoverdale/readoecd/main/llms-full.txt
+
 Version: 0.3.4. License: MIT.
 
 ## Functions

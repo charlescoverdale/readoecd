@@ -1,0 +1,434 @@
+# readoecd — full API reference
+
+> Provides clean, tidy access to key economic indicators published by the 'Organisation for Economic Co-operation and Development' ('OECD'), covering GDP, CPI inflation, unemployment, tax revenue, go...
+
+- Version: 0.3.4
+- Install: `install.packages("readoecd")`
+- CRAN: https://CRAN.R-project.org/package=readoecd
+- GitHub: https://github.com/charlescoverdale/readoecd
+- Reference site: https://charlescoverdale.github.io/readoecd/
+
+This file is a self-contained reference for LLM agents: every exported
+function with its signature, arguments, return value, and example.
+
+---
+
+## `check_oecd_api()`
+
+**Check OECD API connectivity**
+
+Tests the OECD API by making a small live request. Useful for diagnosing connectivity issues or confirming the API is responding normally.
+
+**Usage**
+
+```r
+check_oecd_api()
+```
+
+**Returns**
+
+Invisibly returns `TRUE` if the API is reachable, otherwise throws an error.
+
+**Example**
+
+```r
+check_oecd_api()
+```
+
+---
+
+## `clear_oecd_cache()`
+
+**Clear the readoecd local cache**
+
+Deletes all files cached by `readoecd` on your local machine. After clearing, the next call to any get_oecd_*() function will re-download from the OECD API.
+
+**Usage**
+
+```r
+clear_oecd_cache()
+```
+
+**Returns**
+
+Invisibly returns the number of files deleted.
+
+**Example**
+
+```r
+op <- options(readoecd.cache_dir = tempdir())
+clear_oecd_cache()
+options(op)
+```
+
+---
+
+## `get_oecd_cpi()`
+
+**Get OECD CPI inflation data**
+
+Downloads (and caches) annual consumer price inflation for OECD member countries from the OECD Prices database (COICOP 1999 classification).
+
+**Usage**
+
+```r
+get_oecd_cpi(countries = "all", start_year = 1990, refresh = FALSE)
+```
+
+**Arguments**
+
+- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+
+**Returns**
+
+A data frame with columns: countryISO 3166-1 alpha-3 country code (character) country_nameEnglish country name (character) yearCalendar year (integer) series`"CPI_INFLATION"` (character) valueAnnual CPI inflation rate (numeric) unit`"% change, year-on-year"` (character)
+
+**Example**
+
+```r
+op <- options(readoecd.cache_dir = tempdir())
+cpi <- try(get_oecd_cpi(c("AUS", "GBR", "USA"), start_year = 2000))
+if (!inherits(cpi, "try-error")) head(cpi)
+options(op)
+```
+
+---
+
+## `get_oecd_current_account()`
+
+**Get OECD trade (balance of payments) data**
+
+Downloads (and caches) annual current account balance data for OECD member countries from the OECD Balance of Payments (BOP) database.
+
+**Usage**
+
+```r
+get_oecd_current_account(countries = "all", start_year = 1990, refresh = FALSE)
+```
+
+**Arguments**
+
+- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+
+**Returns**
+
+A data frame with columns: countryISO 3166-1 alpha-3 country code (character) country_nameEnglish country name (character) yearCalendar year (integer) series`"CURRENT_ACCOUNT"` or `"CURRENT_ACCOUNT_GOODS_SERVICES"` (character) valueCurrent account balance in millions USD (numeric) unit`"Millions USD (exchange rate)"` (character)
+
+**Example**
+
+```r
+op <- options(readoecd.cache_dir = tempdir())
+trade <- try(get_oecd_current_account(c("AUS", "DEU", "USA"), start_year = 2000))
+if (!inherits(trade, "try-error")) head(trade)
+options(op)
+```
+
+---
+
+## `get_oecd_deficit()`
+
+**Get OECD government deficit data**
+
+Downloads (and caches) general government net lending/borrowing as a share of GDP for OECD member countries from the OECD National Accounts (NAAG) database.
+
+**Usage**
+
+```r
+get_oecd_deficit(countries = "all", start_year = 1990, refresh = FALSE)
+```
+
+**Arguments**
+
+- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+
+**Returns**
+
+A data frame with columns: countryISO 3166-1 alpha-3 country code (character) country_nameEnglish country name (character) yearCalendar year (integer) series`"GOVT_NET_LENDING"` (character) valueNet lending/borrowing as a share of GDP (numeric). Positive = surplus; negative = deficit. unit`"% of GDP"` (character)
+
+**Example**
+
+```r
+op <- options(readoecd.cache_dir = tempdir())
+deficit <- try(get_oecd_deficit(c("AUS", "GBR", "USA"), start_year = 2000))
+if (!inherits(deficit, "try-error")) head(deficit)
+options(op)
+```
+
+---
+
+## `get_oecd_education()`
+
+**Get OECD education expenditure data**
+
+Downloads (and caches) total education expenditure as a share of GDP for OECD member countries from the OECD Education at a Glance (EAG) UOE Finance database.
+
+**Usage**
+
+```r
+get_oecd_education(countries = "all", start_year = 1990, refresh = FALSE)
+```
+
+**Arguments**
+
+- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+
+**Returns**
+
+A data frame with columns: countryISO 3166-1 alpha-3 country code (character) country_nameEnglish country name (character) yearCalendar year (integer) series`"EDU_EXPENDITURE"` (character) valueTotal education expenditure as a share of GDP (numeric) unit`"% of GDP"` (character)
+
+**Example**
+
+```r
+op <- options(readoecd.cache_dir = tempdir())
+edu <- try(get_oecd_education(c("AUS", "GBR", "USA"), start_year = 2000))
+if (!inherits(edu, "try-error")) head(edu)
+options(op)
+```
+
+---
+
+## `get_oecd_gdp()`
+
+**Get OECD GDP data**
+
+Downloads (and caches) annual gross domestic product (GDP) at current prices for OECD member countries from the OECD National Accounts database.
+
+**Usage**
+
+```r
+get_oecd_gdp(countries = "all", start_year = 1990, refresh = FALSE)
+```
+
+**Arguments**
+
+- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all 38 OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+
+**Returns**
+
+A data frame with columns: countryISO 3166-1 alpha-3 country code (character) country_nameEnglish country name (character) yearCalendar year (integer) series`"GDP"` (character) valueGDP value at current prices (numeric) unitUnit of measurement (character)
+
+**Example**
+
+```r
+op <- options(readoecd.cache_dir = tempdir())
+gdp <- try(get_oecd_gdp(c("AUS", "GBR", "USA"), start_year = 2010))
+
+if (!inherits(gdp, "try-error")) {
+  # Largest OECD economies
+  latest <- gdp[gdp$year == max(gdp$year), ]
+  head(latest[order(-latest$value), c("country_name", "value")], 10)
+}
+options(op)
+```
+
+---
+
+## `get_oecd_health()`
+
+**Get OECD health expenditure data**
+
+Downloads (and caches) total current health expenditure as a share of GDP for OECD member countries from the System of Health Accounts (SHA) database.
+
+**Usage**
+
+```r
+get_oecd_health(countries = "all", start_year = 1990, refresh = FALSE)
+```
+
+**Arguments**
+
+- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+
+**Returns**
+
+A data frame with columns: countryISO 3166-1 alpha-3 country code (character) country_nameEnglish country name (character) yearCalendar year (integer) series`"HEALTH_EXPENDITURE"` (character) valueTotal health expenditure as a share of GDP (numeric) unit`"% of GDP"` (character)
+
+**Example**
+
+```r
+op <- options(readoecd.cache_dir = tempdir())
+health <- try(get_oecd_health(c("AUS", "GBR", "USA"), start_year = 2000))
+if (!inherits(health, "try-error")) head(health)
+options(op)
+```
+
+---
+
+## `get_oecd_inequality()`
+
+**Get OECD income inequality data**
+
+Downloads (and caches) the Gini coefficient of disposable income for OECD member countries from the OECD Income Distribution Database (IDD).
+
+**Usage**
+
+```r
+get_oecd_inequality(countries = "all", start_year = 1990, refresh = FALSE)
+```
+
+**Arguments**
+
+- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+
+**Returns**
+
+A data frame with columns: countryISO 3166-1 alpha-3 country code (character) country_nameEnglish country name (character) yearCalendar year (integer) series`"GINI"` (character) valueGini coefficient of disposable income (numeric) unit`"Gini coefficient (0-1)"` (character)
+
+**Example**
+
+```r
+op <- options(readoecd.cache_dir = tempdir())
+gini <- try(get_oecd_inequality(c("AUS", "GBR", "USA", "DNK"), start_year = 2000))
+if (!inherits(gini, "try-error")) head(gini)
+options(op)
+```
+
+---
+
+## `get_oecd_productivity()`
+
+**Get OECD productivity data**
+
+Downloads (and caches) labour productivity data for OECD member countries from the OECD Productivity Database (PDB).
+
+**Usage**
+
+```r
+get_oecd_productivity(countries = "all", start_year = 1990, refresh = FALSE)
+```
+
+**Arguments**
+
+- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+
+**Returns**
+
+A data frame with columns: countryISO 3166-1 alpha-3 country code (character) country_nameEnglish country name (character) yearCalendar year (integer) series`"GDP_PER_HOUR"` or `"GDP_PER_CAPITA"` (character) valueProductivity value (numeric) unitUnit of measurement (character)
+
+**Example**
+
+```r
+op <- options(readoecd.cache_dir = tempdir())
+prod <- try(get_oecd_productivity(c("AUS", "GBR", "USA"), start_year = 2000))
+if (!inherits(prod, "try-error")) head(prod)
+options(op)
+```
+
+---
+
+## `get_oecd_tax()`
+
+**Get OECD tax revenue data**
+
+Downloads (and caches) total tax revenue as a share of GDP for OECD member countries from the OECD Revenue Statistics Comparator database.
+
+**Usage**
+
+```r
+get_oecd_tax(countries = "all", start_year = 1990, refresh = FALSE)
+```
+
+**Arguments**
+
+- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+
+**Returns**
+
+A data frame with columns: countryISO 3166-1 alpha-3 country code (character) country_nameEnglish country name (character) yearCalendar year (integer) series`"TAX_REVENUE"` (character) valueTotal tax revenue as a share of GDP (numeric) unit`"% of GDP"` (character)
+
+**Example**
+
+```r
+op <- options(readoecd.cache_dir = tempdir())
+tax <- try(get_oecd_tax(c("AUS", "GBR", "USA"), start_year = 2000))
+if (!inherits(tax, "try-error")) head(tax)
+options(op)
+```
+
+---
+
+## `get_oecd_unemployment()`
+
+**Get OECD unemployment rates**
+
+Downloads (and caches) monthly harmonised unemployment rates for OECD member countries from the OECD Labour Force Statistics database.
+
+**Usage**
+
+```r
+get_oecd_unemployment(countries = "all", start_year = 2000, refresh = FALSE)
+```
+
+**Arguments**
+
+- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all 38 OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year` — Numeric. Earliest year to include. Defaults to `2000`.
+- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+
+**Returns**
+
+A data frame with columns: countryISO 3166-1 alpha-3 country code (character) country_nameEnglish country name (character) periodCalendar month in `"YYYY-MM"` format (character) series`"Unemployment rate"` (character) valueUnemployment rate as a percentage of the labour force (numeric) unit`"% of labour force"` (character)
+
+**Example**
+
+```r
+op <- options(readoecd.cache_dir = tempdir())
+# All OECD members since 2010
+une <- try(get_oecd_unemployment(start_year = 2010))
+
+# Australia and UK since 2020
+une <- try(get_oecd_unemployment(c("AUS", "GBR"), start_year = 2020))
+
+if (!inherits(une, "try-error")) {
+  # Which country had the highest unemployment in 2020?
+  une2020 <- une[startsWith(une$period, "2020"), ]
+  une2020_avg <- aggregate(value ~ country_name, une2020, mean)
+  head(une2020_avg[order(-une2020_avg$value), ], 5)
+}
+options(op)
+```
+
+---
+
+## `list_oecd_countries()`
+
+**List OECD member countries**
+
+Returns a data frame of the 38 OECD member countries with their ISO 3166-1 alpha-3 codes and English names. No network call is required.
+
+**Usage**
+
+```r
+list_oecd_countries()
+```
+
+**Returns**
+
+A data frame with columns: iso3ISO 3166-1 alpha-3 country code (character) nameEnglish country name (character)
+
+**Example**
+
+```r
+list_oecd_countries()
+```
+
+---
+
