@@ -45,3 +45,9 @@ Helper functions for managing countries, connectivity, and cache
   : Check OECD API connectivity
 - [`clear_oecd_cache()`](https://charlescoverdale.github.io/readoecd/reference/clear_oecd_cache.md)
   : Clear the readoecd local cache
+
+## Package
+
+- [`readoecd`](https://charlescoverdale.github.io/readoecd/reference/readoecd-package.md)
+  [`readoecd-package`](https://charlescoverdale.github.io/readoecd/reference/readoecd-package.md)
+  : readoecd: Download and Tidy Data from the 'OECD'
