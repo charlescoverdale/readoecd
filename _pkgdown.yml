@@ -41,3 +41,7 @@ reference:
       - list_oecd_countries
       - check_oecd_api
       - clear_oecd_cache
+
+  - title: "Package"
+    contents:
+      - readoecd-package
