@@ -1,0 +1,28 @@
+# readoecd
+
+> Provides clean, tidy access to key economic indicators published by the 'Organisation for Economic Co-operation and Development' ('OECD'), covering GDP, CPI inflation, unemployment, tax revenue, go... Install with `install.packages("readoecd")`.
+
+Version: 0.3.4. License: MIT.
+
+## Functions
+
+- [`check_oecd_api()`](https://charlescoverdale.github.io/readoecd/reference/check_oecd_api.html): Check OECD API connectivity
+- [`clear_oecd_cache()`](https://charlescoverdale.github.io/readoecd/reference/clear_oecd_cache.html): Clear the readoecd local cache
+- [`get_oecd_cpi()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_cpi.html): Get OECD CPI inflation data
+- [`get_oecd_current_account()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_current_account.html): Get OECD trade (balance of payments) data
+- [`get_oecd_deficit()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_deficit.html): Get OECD government deficit data
+- [`get_oecd_education()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_education.html): Get OECD education expenditure data
+- [`get_oecd_gdp()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_gdp.html): Get OECD GDP data
+- [`get_oecd_health()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_health.html): Get OECD health expenditure data
+- [`get_oecd_inequality()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_inequality.html): Get OECD income inequality data
+- [`get_oecd_productivity()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_productivity.html): Get OECD productivity data
+- [`get_oecd_tax()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_tax.html): Get OECD tax revenue data
+- [`get_oecd_unemployment()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_unemployment.html): Get OECD unemployment rates
+- [`list_oecd_countries()`](https://charlescoverdale.github.io/readoecd/reference/list_oecd_countries.html): List OECD member countries
+
+## Documentation
+
+- [Full reference](https://charlescoverdale.github.io/readoecd/reference/)
+- [GitHub](https://github.com/charlescoverdale/readoecd)
+- [CRAN](https://CRAN.R-project.org/package=readoecd)
+
