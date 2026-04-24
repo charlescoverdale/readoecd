@@ -21,6 +21,12 @@ A data frame with columns:
 
   English country name (character)
 
+## See also
+
+Other utilities:
+[`check_oecd_api()`](https://charlescoverdale.github.io/readoecd/reference/check_oecd_api.md),
+[`clear_oecd_cache()`](https://charlescoverdale.github.io/readoecd/reference/clear_oecd_cache.md)
+
 ## Examples
 
 ``` r

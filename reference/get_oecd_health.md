@@ -63,18 +63,25 @@ across all financing sources (government, compulsory insurance,
 voluntary insurance, and out-of-pocket payments), measured as a
 percentage of GDP at current prices.
 
+## See also
+
+Other social indicators:
+[`get_oecd_education()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_education.md),
+[`get_oecd_inequality()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_inequality.md)
+
 ## Examples
 
 ``` r
 # \donttest{
-health <- get_oecd_health(c("AUS", "GBR", "USA"), start_year = 2000)
+op <- options(readoecd.cache_dir = tempdir())
+health <- try(get_oecd_health(c("AUS", "GBR", "USA"), start_year = 2000))
 #> Downloading from OECD API...
-#> Error in value[[3L]](cond): Failed to reach the OECD API.
+#> Error in value[[3L]](cond) : Failed to reach the OECD API.
 #> ℹ Check your internet connection and try again.
 #> ℹ If the problem persists, the OECD may have changed their API.
 #> ℹ Check for a package update or report at
 #>   <https://github.com/charlescoverdale/readoecd/issues>
-head(health)
-#> Error: object 'health' not found
+if (!inherits(health, "try-error")) head(health)
+options(op)
 # }
 ```

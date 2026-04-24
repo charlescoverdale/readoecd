@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">readoecd</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,6 +33,25 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.4" id="readoecd-034">readoecd 0.3.4<a class="anchor" aria-label="anchor" href="#readoecd-034"></a></h2>
+<ul><li>Fixed incorrect function name in NEWS.md (<code>get_oecd_trade</code> corrected to <code>get_oecd_current_account</code>).</li>
+<li>Fixed cache tag bug in <code><a href="../reference/get_oecd_unemployment.html">get_oecd_unemployment()</a></code> when requesting all countries.</li>
+<li>Standardised NULL check pattern across all data functions.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.3" id="readoecd-033">readoecd 0.3.3<a class="anchor" aria-label="anchor" href="#readoecd-033"></a></h2><p class="text-muted">CRAN release: 2026-03-18</p>
+<ul><li>Examples now wrapped in <code><a href="https://rdrr.io/r/base/try.html" class="external-link">try()</a></code> to handle transient OECD API failures gracefully during CRAN checks.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.2" id="readoecd-032">readoecd 0.3.2<a class="anchor" aria-label="anchor" href="#readoecd-032"></a></h2>
+<ul><li>Removed non-existent pkgdown URL from DESCRIPTION.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.1" id="readoecd-031">readoecd 0.3.1<a class="anchor" aria-label="anchor" href="#readoecd-031"></a></h2>
+<ul><li>Examples now cache to <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> instead of the user’s home directory, fixing CRAN policy compliance for <code>\donttest</code> examples.</li>
+<li>Cache directory is now configurable via <code>options(readoecd.cache_dir = ...)</code>.</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.0" id="readoecd-030">readoecd 0.3.0<a class="anchor" aria-label="anchor" href="#readoecd-030"></a></h2><p class="text-muted">CRAN release: 2026-03-12</p>
 <ul><li>Added <code><a href="../reference/get_oecd_cpi.html">get_oecd_cpi()</a></code> — annual CPI inflation rate, year-on-year (OECD Prices database).</li>
 <li>Added <code><a href="../reference/get_oecd_deficit.html">get_oecd_deficit()</a></code> — general government net lending/borrowing as % of GDP (NAAG).</li>
@@ -45,7 +64,7 @@
 <li>Added <code><a href="../reference/get_oecd_health.html">get_oecd_health()</a></code> — total health expenditure as % of GDP (SHA database).</li>
 <li>Added <code><a href="../reference/get_oecd_education.html">get_oecd_education()</a></code> — total education expenditure as % of GDP (EAG UOE Finance).</li>
 <li>Added <code><a href="../reference/get_oecd_productivity.html">get_oecd_productivity()</a></code> — GDP per hour worked or per capita (OECD PDB).</li>
-<li>Added <code>get_oecd_trade()</code> — annual current account balance in USD (OECD BOP).</li>
+<li>Added <code><a href="../reference/get_oecd_current_account.html">get_oecd_current_account()</a></code> — annual current account balance in USD (OECD BOP).</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="readoecd-010">readoecd 0.1.0<a class="anchor" aria-label="anchor" href="#readoecd-010"></a></h2>

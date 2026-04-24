@@ -60,19 +60,26 @@ A data frame with columns:
 Returns GDP per hour worked where available (in USD purchasing power
 parities), falling back to GDP per capita. Values are at current prices.
 
+## See also
+
+Other productivity and trade:
+[`get_oecd_current_account()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_current_account.md)
+
 ## Examples
 
 ``` r
 # \donttest{
-prod <- get_oecd_productivity(c("AUS", "GBR", "USA"), start_year = 2000)
+op <- options(readoecd.cache_dir = tempdir())
+prod <- try(get_oecd_productivity(c("AUS", "GBR", "USA"), start_year = 2000))
 #> Downloading from OECD API...
-head(prod)
+if (!inherits(prod, "try-error")) head(prod)
 #>     country country_name year       series    value      unit
-#> 73      AUS    Australia 2000 GDP_PER_HOUR 53.89475 USD_PPP_H
-#> 74      AUS    Australia 2000 GDP_PER_HOUR 34.09458 USD_PPP_H
+#> 73      AUS    Australia 2000 GDP_PER_HOUR 34.09458 USD_PPP_H
+#> 74      AUS    Australia 2000 GDP_PER_HOUR 53.89475 USD_PPP_H
 #> 75      AUS    Australia 2000 GDP_PER_HOUR 44.73481 USD_PPP_H
 #> 220     AUS    Australia 2000 GDP_PER_HOUR 77.13215 USD_PPP_H
 #> 76      AUS    Australia 2001 GDP_PER_HOUR 47.77077 USD_PPP_H
 #> 77      AUS    Australia 2001 GDP_PER_HOUR 55.96281 USD_PPP_H
+options(op)
 # }
 ```

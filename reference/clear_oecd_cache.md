@@ -14,11 +14,21 @@ clear_oecd_cache()
 
 Invisibly returns the number of files deleted.
 
+## See also
+
+Other utilities:
+[`check_oecd_api()`](https://charlescoverdale.github.io/readoecd/reference/check_oecd_api.md),
+[`list_oecd_countries()`](https://charlescoverdale.github.io/readoecd/reference/list_oecd_countries.md)
+
 ## Examples
 
 ``` r
 # \donttest{
+op <- options(readoecd.cache_dir = tempdir())
 clear_oecd_cache()
-#> Cache directory does not exist -- nothing to clear.
+#> Warning: cannot remove file '/tmp/Rtmp60TmZO/bslib-246362e7e3ff6191071d5f9b40ba8d62', reason 'Directory not empty'
+#> Warning: cannot remove file '/tmp/Rtmp60TmZO/downlit', reason 'Directory not empty'
+#> Cleared 2 cached files.
+options(op)
 # }
 ```

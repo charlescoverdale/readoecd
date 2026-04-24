@@ -1,5 +1,34 @@
 # Changelog
 
+## readoecd 0.3.4
+
+- Fixed incorrect function name in NEWS.md (`get_oecd_trade` corrected
+  to `get_oecd_current_account`).
+- Fixed cache tag bug in
+  [`get_oecd_unemployment()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_unemployment.md)
+  when requesting all countries.
+- Standardised NULL check pattern across all data functions.
+
+## readoecd 0.3.3
+
+CRAN release: 2026-03-18
+
+- Examples now wrapped in [`try()`](https://rdrr.io/r/base/try.html) to
+  handle transient OECD API failures gracefully during CRAN checks.
+
+## readoecd 0.3.2
+
+- Removed non-existent pkgdown URL from DESCRIPTION.
+
+## readoecd 0.3.1
+
+- Examples now cache to
+  [`tempdir()`](https://rdrr.io/r/base/tempfile.html) instead of the
+  user’s home directory, fixing CRAN policy compliance for `\donttest`
+  examples.
+- Cache directory is now configurable via
+  `options(readoecd.cache_dir = ...)`.
+
 ## readoecd 0.3.0
 
 CRAN release: 2026-03-12
@@ -31,8 +60,9 @@ CRAN release: 2026-03-12
 - Added
   [`get_oecd_productivity()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_productivity.md)
   — GDP per hour worked or per capita (OECD PDB).
-- Added `get_oecd_trade()` — annual current account balance in USD (OECD
-  BOP).
+- Added
+  [`get_oecd_current_account()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_current_account.md)
+  — annual current account balance in USD (OECD BOP).
 
 ## readoecd 0.1.0
 

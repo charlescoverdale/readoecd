@@ -9,7 +9,7 @@ member countries from the OECD Income Distribution Database (IDD)."></head><body
 
     <a class="navbar-brand me-2" href="../index.html">readoecd</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,13 +93,20 @@ equality) to 1 (maximum inequality). Disposable income is household income
 after taxes and transfers. The series follows the OECD METH2012 methodology
 where available for consistency across countries and time.</p>
     </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other social indicators:
+<code><a href="get_oecd_education.html">get_oecd_education()</a></code>,
+<code><a href="get_oecd_health.html">get_oecd_health()</a></code></p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="va">gini</span> <span class="op">&lt;-</span> <span class="fu">get_oecd_inequality</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AUS"</span>, <span class="st">"GBR"</span>, <span class="st">"USA"</span>, <span class="st">"DNK"</span><span class="op">)</span>, start_year <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>readoecd.cache_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">gini</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">get_oecd_inequality</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AUS"</span>, <span class="st">"GBR"</span>, <span class="st">"USA"</span>, <span class="st">"DNK"</span><span class="op">)</span>, start_year <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading from OECD API...</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">gini</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">inherits</a></span><span class="op">(</span><span class="va">gini</span>, <span class="st">"try-error"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">gini</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    country country_name year series  value                   unit</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 40     AUS    Australia 2012   GINI 0.3260 Gini coefficient (0-1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 41     AUS    Australia 2014   GINI 0.3370 Gini coefficient (0-1)</span>
@@ -107,6 +114,7 @@ where available for consistency across countries and time.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 43     AUS    Australia 2018   GINI 0.3250 Gini coefficient (0-1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 39     AUS    Australia 2020   GINI 0.3190 Gini coefficient (0-1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      DNK      Denmark 2011   GINI 0.2505 Gini coefficient (0-1)</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

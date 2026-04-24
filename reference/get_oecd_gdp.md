@@ -62,19 +62,27 @@ GDP is measured using the expenditure approach (Table 1 of the OECD Main
 National Accounts), valued at current prices in US dollars converted
 using purchasing power parities (PPPs) where available.
 
+## See also
+
+Other economic indicators:
+[`get_oecd_cpi()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_cpi.md),
+[`get_oecd_unemployment()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_unemployment.md)
+
 ## Examples
 
 ``` r
 # \donttest{
-gdp <- get_oecd_gdp(c("AUS", "GBR", "USA"), start_year = 2010)
+op <- options(readoecd.cache_dir = tempdir())
+gdp <- try(get_oecd_gdp(c("AUS", "GBR", "USA"), start_year = 2010))
 #> Downloading from OECD API...
 
-# Largest OECD economies
-latest <- gdp[gdp$year == max(gdp$year), ]
-head(latest[order(-latest$value), c("country_name", "value")], 10)
-#>      country_name    value
-#> 10  United States 29298013
-#> 9  United Kingdom  4352408
-#> 23      Australia  2033546
+if (!inherits(gdp, "try-error")) {
+  # Largest OECD economies
+  latest <- gdp[gdp$year == max(gdp$year), ]
+  head(latest[order(-latest$value), c("country_name", "value")], 10)
+}
+#>     country_name   value
+#> 2 United Kingdom 4538475
+options(op)
 # }
 ```

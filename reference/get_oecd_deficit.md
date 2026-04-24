@@ -66,18 +66,24 @@ deficit (government borrowing). This is the standard fiscal balance
 measure used for cross-country comparisons and is consistent with the
 System of National Accounts (SNA) definition.
 
+## See also
+
+Other fiscal:
+[`get_oecd_tax()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_tax.md)
+
 ## Examples
 
 ``` r
 # \donttest{
-deficit <- get_oecd_deficit(c("AUS", "GBR", "USA"), start_year = 2000)
+op <- options(readoecd.cache_dir = tempdir())
+deficit <- try(get_oecd_deficit(c("AUS", "GBR", "USA"), start_year = 2000))
 #> Downloading from OECD API...
-#> Error in value[[3L]](cond): Failed to reach the OECD API.
+#> Error in value[[3L]](cond) : Failed to reach the OECD API.
 #> ℹ Check your internet connection and try again.
 #> ℹ If the problem persists, the OECD may have changed their API.
 #> ℹ Check for a package update or report at
 #>   <https://github.com/charlescoverdale/readoecd/issues>
-head(deficit)
-#> Error: object 'deficit' not found
+if (!inherits(deficit, "try-error")) head(deficit)
+options(op)
 # }
 ```

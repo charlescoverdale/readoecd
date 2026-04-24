@@ -62,13 +62,20 @@ Returns the year-on-year percentage change in the Consumer Price Index
 standard harmonised measure of headline inflation used for cross-country
 comparisons.
 
+## See also
+
+Other economic indicators:
+[`get_oecd_gdp()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_gdp.md),
+[`get_oecd_unemployment()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_unemployment.md)
+
 ## Examples
 
 ``` r
 # \donttest{
-cpi <- get_oecd_cpi(c("AUS", "GBR", "USA"), start_year = 2000)
+op <- options(readoecd.cache_dir = tempdir())
+cpi <- try(get_oecd_cpi(c("AUS", "GBR", "USA"), start_year = 2000))
 #> Downloading from OECD API...
-head(cpi)
+if (!inherits(cpi, "try-error")) head(cpi)
 #>    country country_name year        series    value                   unit
 #> 77     AUS    Australia 2000 CPI_INFLATION 4.457435 % change, year-on-year
 #> 76     AUS    Australia 2001 CPI_INFLATION 4.407135 % change, year-on-year
@@ -76,5 +83,6 @@ head(cpi)
 #> 74     AUS    Australia 2003 CPI_INFLATION 2.732596 % change, year-on-year
 #> 73     AUS    Australia 2004 CPI_INFLATION 2.343255 % change, year-on-year
 #> 72     AUS    Australia 2005 CPI_INFLATION 2.691832 % change, year-on-year
+options(op)
 # }
 ```

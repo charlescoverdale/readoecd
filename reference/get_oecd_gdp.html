@@ -9,7 +9,7 @@ prices for OECD member countries from the OECD National Accounts database."></he
 
     <a class="navbar-brand me-2" href="../index.html">readoecd</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,20 +92,28 @@ exists. Defaults to <code>FALSE</code>.</p></dd>
 National Accounts), valued at current prices in US dollars converted using
 purchasing power parities (PPPs) where available.</p>
     </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other economic indicators:
+<code><a href="get_oecd_cpi.html">get_oecd_cpi()</a></code>,
+<code><a href="get_oecd_unemployment.html">get_oecd_unemployment()</a></code></p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="va">gdp</span> <span class="op">&lt;-</span> <span class="fu">get_oecd_gdp</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AUS"</span>, <span class="st">"GBR"</span>, <span class="st">"USA"</span><span class="op">)</span>, start_year <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>readoecd.cache_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">gdp</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">get_oecd_gdp</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AUS"</span>, <span class="st">"GBR"</span>, <span class="st">"USA"</span><span class="op">)</span>, start_year <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading from OECD API...</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Largest OECD economies</span></span></span>
-<span class="r-in"><span><span class="va">latest</span> <span class="op">&lt;-</span> <span class="va">gdp</span><span class="op">[</span><span class="va">gdp</span><span class="op">$</span><span class="va">year</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">gdp</span><span class="op">$</span><span class="va">year</span><span class="op">)</span>, <span class="op">]</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">latest</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="op">-</span><span class="va">latest</span><span class="op">$</span><span class="va">value</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"country_name"</span>, <span class="st">"value"</span><span class="op">)</span><span class="op">]</span>, <span class="fl">10</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      country_name    value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10  United States 29298013</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  United Kingdom  4352408</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23      Australia  2033546</span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">inherits</a></span><span class="op">(</span><span class="va">gdp</span>, <span class="st">"try-error"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="co"># Largest OECD economies</span></span></span>
+<span class="r-in"><span>  <span class="va">latest</span> <span class="op">&lt;-</span> <span class="va">gdp</span><span class="op">[</span><span class="va">gdp</span><span class="op">$</span><span class="va">year</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">gdp</span><span class="op">$</span><span class="va">year</span><span class="op">)</span>, <span class="op">]</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">latest</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="op">-</span><span class="va">latest</span><span class="op">$</span><span class="va">value</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"country_name"</span>, <span class="st">"value"</span><span class="op">)</span><span class="op">]</span>, <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     country_name   value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 United Kingdom 4538475</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

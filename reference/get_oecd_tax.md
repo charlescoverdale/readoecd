@@ -55,18 +55,24 @@ A data frame with columns:
 
   `"% of GDP"` (character)
 
+## See also
+
+Other fiscal:
+[`get_oecd_deficit()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_deficit.md)
+
 ## Examples
 
 ``` r
 # \donttest{
-tax <- get_oecd_tax(c("AUS", "GBR", "USA"), start_year = 2000)
+op <- options(readoecd.cache_dir = tempdir())
+tax <- try(get_oecd_tax(c("AUS", "GBR", "USA"), start_year = 2000))
 #> Downloading from OECD API...
-#> Error in value[[3L]](cond): Failed to reach the OECD API.
+#> Error in value[[3L]](cond) : Failed to reach the OECD API.
 #> ℹ Check your internet connection and try again.
 #> ℹ If the problem persists, the OECD may have changed their API.
 #> ℹ Check for a package update or report at
 #>   <https://github.com/charlescoverdale/readoecd/issues>
-head(tax)
-#> Error: object 'tax' not found
+if (!inherits(tax, "try-error")) head(tax)
+options(op)
 # }
 ```

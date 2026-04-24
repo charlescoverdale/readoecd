@@ -63,13 +63,20 @@ household income after taxes and transfers. The series follows the OECD
 METH2012 methodology where available for consistency across countries
 and time.
 
+## See also
+
+Other social indicators:
+[`get_oecd_education()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_education.md),
+[`get_oecd_health()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_health.md)
+
 ## Examples
 
 ``` r
 # \donttest{
-gini <- get_oecd_inequality(c("AUS", "GBR", "USA", "DNK"), start_year = 2000)
+op <- options(readoecd.cache_dir = tempdir())
+gini <- try(get_oecd_inequality(c("AUS", "GBR", "USA", "DNK"), start_year = 2000))
 #> Downloading from OECD API...
-head(gini)
+if (!inherits(gini, "try-error")) head(gini)
 #>    country country_name year series  value                   unit
 #> 40     AUS    Australia 2012   GINI 0.3260 Gini coefficient (0-1)
 #> 41     AUS    Australia 2014   GINI 0.3370 Gini coefficient (0-1)
@@ -77,5 +84,6 @@ head(gini)
 #> 43     AUS    Australia 2018   GINI 0.3250 Gini coefficient (0-1)
 #> 39     AUS    Australia 2020   GINI 0.3190 Gini coefficient (0-1)
 #> 2      DNK      Denmark 2011   GINI 0.2505 Gini coefficient (0-1)
+options(op)
 # }
 ```

@@ -14,6 +14,12 @@ check_oecd_api()
 Invisibly returns `TRUE` if the API is reachable, otherwise throws an
 error.
 
+## See also
+
+Other utilities:
+[`clear_oecd_cache()`](https://charlescoverdale.github.io/readoecd/reference/clear_oecd_cache.md),
+[`list_oecd_countries()`](https://charlescoverdale.github.io/readoecd/reference/list_oecd_countries.md)
+
 ## Examples
 
 ``` r

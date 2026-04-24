@@ -62,18 +62,24 @@ of the world, in millions of US dollars at current exchange rates. A
 positive value indicates a current account surplus; a negative value
 indicates a deficit.
 
+## See also
+
+Other productivity and trade:
+[`get_oecd_productivity()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_productivity.md)
+
 ## Examples
 
 ``` r
 # \donttest{
-trade <- get_oecd_current_account(c("AUS", "DEU", "USA"), start_year = 2000)
+op <- options(readoecd.cache_dir = tempdir())
+trade <- try(get_oecd_current_account(c("AUS", "DEU", "USA"), start_year = 2000))
 #> Downloading from OECD API...
-#> Error in value[[3L]](cond): Failed to reach the OECD API.
+#> Error in value[[3L]](cond) : Failed to reach the OECD API.
 #> ℹ Check your internet connection and try again.
 #> ℹ If the problem persists, the OECD may have changed their API.
 #> ℹ Check for a package update or report at
 #>   <https://github.com/charlescoverdale/readoecd/issues>
-head(trade)
-#> Error: object 'trade' not found
+if (!inherits(trade, "try-error")) head(trade)
+options(op)
 # }
 ```

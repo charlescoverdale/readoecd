@@ -62,13 +62,20 @@ Education expenditure covers spending on educational institutions across
 all levels of education (ISCED 0–8), from all public and private
 sources, expressed as a percentage of GDP.
 
+## See also
+
+Other social indicators:
+[`get_oecd_health()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_health.md),
+[`get_oecd_inequality()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_inequality.md)
+
 ## Examples
 
 ``` r
 # \donttest{
-edu <- get_oecd_education(c("AUS", "GBR", "USA"), start_year = 2000)
+op <- options(readoecd.cache_dir = tempdir())
+edu <- try(get_oecd_education(c("AUS", "GBR", "USA"), start_year = 2000))
 #> Downloading from OECD API...
-head(edu)
+if (!inherits(edu, "try-error")) head(edu)
 #>     country country_name year          series     value     unit
 #> 76      AUS    Australia 2000 EDU_EXPENDITURE 0.0544171 % of GDP
 #> 91      AUS    Australia 2000 EDU_EXPENDITURE 0.0898196 % of GDP
@@ -76,5 +83,6 @@ head(edu)
 #> 646     AUS    Australia 2000 EDU_EXPENDITURE 3.7549170 % of GDP
 #> 676     AUS    Australia 2000 EDU_EXPENDITURE 1.6030780 % of GDP
 #> 706     AUS    Australia 2000 EDU_EXPENDITURE 0.4119364 % of GDP
+options(op)
 # }
 ```
