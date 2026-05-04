@@ -81,8 +81,10 @@ if (!inherits(gdp, "try-error")) {
   latest <- gdp[gdp$year == max(gdp$year), ]
   head(latest[order(-latest$value), c("country_name", "value")], 10)
 }
-#>     country_name   value
-#> 2 United Kingdom 4538475
+#>      country_name    value
+#> 26  United States 30769700
+#> 15 United Kingdom  4538475
+#> 25      Australia  2132764
 options(op)
 # }
 ```

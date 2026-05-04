@@ -53,6 +53,7 @@ so repeated calls are instant.
 ## Installation
 
 ``` r
+
 install.packages("readoecd")
 
 # Or install the development version from GitHub
@@ -90,6 +91,7 @@ provides:
 ## Datasets available in this package
 
 ``` r
+
 library(readoecd)
 ```
 
@@ -103,6 +105,7 @@ for cross-country comparisons where available; the package falls back to
 exchange-rate USD if PPP is not published for a given country-year.
 
 ``` r
+
 # Largest OECD economies in the most recent year
 gdp <- get_oecd_gdp("all", start_year = 2015)
 latest <- gdp[gdp$year == max(gdp$year), ]
@@ -129,6 +132,7 @@ comparisons. Coverage varies by country but is generally available from
 the 1970s–1980s onwards.
 
 ``` r
+
 # Inflation through the post-COVID price surge
 cpi <- get_oecd_cpi(c("AUS", "GBR", "USA", "DEU"), start_year = 2018)
 cpi[cpi$year == 2022, c("country_name", "year", "value")]
@@ -149,6 +153,7 @@ standard series for cross-country comparisons. Coverage varies by
 country but generally starts from the 1980s–1990s.
 
 ``` r
+
 # Track unemployment through the COVID shock
 unemp <- get_oecd_unemployment(c("AUS", "GBR", "USA"), start_year = 2018)
 
@@ -171,6 +176,7 @@ used in cross-country fiscal analysis. Annual data; most countries
 covered from the early 1990s.
 
 ``` r
+
 # Tax burden: Nordics vs Anglo-Saxon economies
 tax <- get_oecd_tax(c("DNK", "SWE", "NOR", "AUS", "GBR", "USA"),
                     start_year = 2010)
@@ -195,6 +201,7 @@ positive value indicates a surplus; a negative value indicates a
 deficit. Annual data; most OECD members covered from the 1990s.
 
 ``` r
+
 # Fiscal positions during and after the pandemic
 deficit <- get_oecd_deficit(c("AUS", "GBR", "USA", "DEU"), start_year = 2018)
 deficit[deficit$year %in% 2019:2022, c("country_name", "year", "value")]
@@ -215,6 +222,7 @@ standardised SHA 2011 framework developed jointly by the OECD, WHO, and
 Eurostat. Annual data; coverage typically from 2000 onwards.
 
 ``` r
+
 # Which OECD country spends the most on health?
 health <- get_oecd_health("all", start_year = 2015)
 latest_hlth <- health[health$year == max(health$year), ]
@@ -237,6 +245,7 @@ Published annually; data typically available with a two-year lag,
 covering most OECD members from the mid-2000s.
 
 ``` r
+
 # Education spending trends across selected countries
 edu <- get_oecd_education(c("AUS", "GBR", "USA", "KOR", "FIN"),
                           start_year = 2005)
@@ -254,6 +263,7 @@ METH2012 methodology for comparability across countries and over time.
 Annual data; coverage varies by country, typically from the mid-1990s.
 
 ``` r
+
 # Income inequality: how do OECD countries compare?
 gini <- get_oecd_inequality("all", start_year = 2010)
 latest_gini <- gini[gini$year == max(gini$year), ]
@@ -272,6 +282,7 @@ comparisons, as it adjusts for differences in average working hours
 across countries. Annual data; coverage varies by country.
 
 ``` r
+
 # Productivity rankings across all OECD members
 prod <- get_oecd_productivity("all", start_year = 2010)
 latest_prod <- prod[prod$year == max(prod$year), ]
@@ -288,6 +299,7 @@ indicates a deficit. Coverage is annual; most countries available from
 the 1990s.
 
 ``` r
+
 # Identify persistent surplus and deficit countries
 ca <- get_oecd_current_account("all", start_year = 2010)
 latest_ca <- ca[ca$year == max(ca$year), ]
@@ -301,13 +313,14 @@ head(latest_ca[order(latest_ca$value), c("country_name", "year", "value")], 5)
 
 ## Utility functions
 
-| Function                                                                                                | Description                                     |
-|---------------------------------------------------------------------------------------------------------|-------------------------------------------------|
+| Function | Description |
+|----|----|
 | [`list_oecd_countries()`](https://charlescoverdale.github.io/readoecd/reference/list_oecd_countries.md) | List all 38 OECD member country codes and names |
-| [`check_oecd_api()`](https://charlescoverdale.github.io/readoecd/reference/check_oecd_api.md)           | Test connectivity to the OECD API               |
-| [`clear_oecd_cache()`](https://charlescoverdale.github.io/readoecd/reference/clear_oecd_cache.md)       | Delete all locally cached data files            |
+| [`check_oecd_api()`](https://charlescoverdale.github.io/readoecd/reference/check_oecd_api.md) | Test connectivity to the OECD API |
+| [`clear_oecd_cache()`](https://charlescoverdale.github.io/readoecd/reference/clear_oecd_cache.md) | Delete all locally cached data files |
 
 ``` r
+
 # See all available country codes
 list_oecd_countries()
 
@@ -347,18 +360,15 @@ issue](https://github.com/charlescoverdale/readoecd/issues).
 
 ## Related packages
 
-The **readoecd** package is part of a suite of R packages for economic
-and financial data:
-
-| Package                                                    | What it covers                                                                       |
-|------------------------------------------------------------|--------------------------------------------------------------------------------------|
-| [`ons`](https://github.com/charlescoverdale/ons)           | ONS data (GDP, inflation, unemployment, wages, trade, house prices, population)      |
-| [`boe`](https://github.com/charlescoverdale/boe)           | Bank of England data (Bank Rate, SONIA, gilt yields, exchange rates, mortgage rates) |
-| [`hmrc`](https://github.com/charlescoverdale/hmrc)         | HMRC tax receipts, corporation tax, stamp duty, R&D credits, and tax gap data        |
-| [`obr`](https://github.com/charlescoverdale/obr)           | OBR fiscal forecasts and the Public Finances Databank                                |
-| [`readecb`](https://github.com/charlescoverdale/readecb)   | European Central Bank data (policy rates, HICP, exchange rates, yield curves)        |
-| [`fred`](https://github.com/charlescoverdale/fred)         | US Federal Reserve (FRED) data (800,000+ economic time series)                       |
-| [`inflateR`](https://github.com/charlescoverdale/inflateR) | Adjust values for inflation using CPI or GDP deflator data                           |
+| Package | Description |
+|----|----|
+| [`ons`](https://github.com/charlescoverdale/ons) | UK Office for National Statistics data |
+| [`fred`](https://github.com/charlescoverdale/fred) | US Federal Reserve (FRED) data |
+| [`readecb`](https://github.com/charlescoverdale/readecb) | European Central Bank data |
+| [`comtrade`](https://github.com/charlescoverdale/comtrade) | UN Comtrade bilateral trade data |
+| [`inflationkit`](https://github.com/charlescoverdale/inflationkit) | Inflation analysis (decomposition, persistence, Phillips curve) |
+| [`inequality`](https://github.com/charlescoverdale/inequality) | Inequality and poverty measurement |
+| [`nowcast`](https://github.com/charlescoverdale/nowcast) | Economic nowcasting |
 
 ## Keywords
 

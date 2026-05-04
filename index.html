@@ -262,20 +262,20 @@
 <col width="50%">
 <col width="50%">
 </colgroup>
-<thead><tr class="header">
+<thead><tr>
 <th>Function</th>
 <th>Description</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code><a href="reference/list_oecd_countries.html">list_oecd_countries()</a></code></td>
 <td>List all 38 OECD member country codes and names</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code><a href="reference/check_oecd_api.html">check_oecd_api()</a></code></td>
 <td>Test connectivity to the OECD API</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code><a href="reference/clear_oecd_cache.html">clear_oecd_cache()</a></code></td>
 <td>Delete all locally cached data files</td>
 </tr>
@@ -298,44 +298,44 @@
 <col width="33%">
 <col width="33%">
 </colgroup>
-<thead><tr class="header">
+<thead><tr>
 <th>Column</th>
 <th>Type</th>
 <th>Description</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>country</code></td>
 <td>character</td>
 <td>ISO 3166-1 alpha-3 code (e.g. <code>"AUS"</code>)</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>country_name</code></td>
 <td>character</td>
 <td>English country name</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>year</code></td>
 <td>integer</td>
 <td>Calendar year (annual datasets)</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>period</code></td>
 <td>character</td>
 <td>
 <code>"YYYY-MM"</code> for monthly datasets</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>series</code></td>
 <td>character</td>
 <td>Series label (e.g. <code>"GDP"</code>, <code>"CPI_INFLATION"</code>)</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>value</code></td>
 <td>numeric</td>
 <td>Observation value</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>unit</code></td>
 <td>character</td>
 <td>Unit of measurement</td>
@@ -356,44 +356,43 @@
 <div class="section level2">
 <h2 id="related-packages">Related packages<a class="anchor" aria-label="anchor" href="#related-packages"></a>
 </h2>
-<p>The <strong>readoecd</strong> package is part of a suite of R packages for economic and financial data:</p>
 <table class="table">
 <colgroup>
 <col width="50%">
 <col width="50%">
 </colgroup>
-<thead><tr class="header">
+<thead><tr>
 <th>Package</th>
-<th>What it covers</th>
+<th>Description</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><a href="https://github.com/charlescoverdale/ons" class="external-link"><code>ons</code></a></td>
-<td>ONS data (GDP, inflation, unemployment, wages, trade, house prices, population)</td>
+<td>UK Office for National Statistics data</td>
 </tr>
-<tr class="even">
-<td><a href="https://github.com/charlescoverdale/boe" class="external-link"><code>boe</code></a></td>
-<td>Bank of England data (Bank Rate, SONIA, gilt yields, exchange rates, mortgage rates)</td>
-</tr>
-<tr class="odd">
-<td><a href="https://github.com/charlescoverdale/hmrc" class="external-link"><code>hmrc</code></a></td>
-<td>HMRC tax receipts, corporation tax, stamp duty, R&amp;D credits, and tax gap data</td>
-</tr>
-<tr class="even">
-<td><a href="https://github.com/charlescoverdale/obr" class="external-link"><code>obr</code></a></td>
-<td>OBR fiscal forecasts and the Public Finances Databank</td>
-</tr>
-<tr class="odd">
-<td><a href="https://github.com/charlescoverdale/readecb" class="external-link"><code>readecb</code></a></td>
-<td>European Central Bank data (policy rates, HICP, exchange rates, yield curves)</td>
-</tr>
-<tr class="even">
+<tr>
 <td><a href="https://github.com/charlescoverdale/fred" class="external-link"><code>fred</code></a></td>
-<td>US Federal Reserve (FRED) data (800,000+ economic time series)</td>
+<td>US Federal Reserve (FRED) data</td>
 </tr>
-<tr class="odd">
-<td><a href="https://github.com/charlescoverdale/inflateR" class="external-link"><code>inflateR</code></a></td>
-<td>Adjust values for inflation using CPI or GDP deflator data</td>
+<tr>
+<td><a href="https://github.com/charlescoverdale/readecb" class="external-link"><code>readecb</code></a></td>
+<td>European Central Bank data</td>
+</tr>
+<tr>
+<td><a href="https://github.com/charlescoverdale/comtrade" class="external-link"><code>comtrade</code></a></td>
+<td>UN Comtrade bilateral trade data</td>
+</tr>
+<tr>
+<td><a href="https://github.com/charlescoverdale/inflationkit" class="external-link"><code>inflationkit</code></a></td>
+<td>Inflation analysis (decomposition, persistence, Phillips curve)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/charlescoverdale/inequality" class="external-link"><code>inequality</code></a></td>
+<td>Inequality and poverty measurement</td>
+</tr>
+<tr>
+<td><a href="https://github.com/charlescoverdale/nowcast" class="external-link"><code>nowcast</code></a></td>
+<td>Economic nowcasting</td>
 </tr>
 </tbody>
 </table>
