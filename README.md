@@ -242,17 +242,15 @@ readoecd uses the OECD Data Explorer REST API (`sdmx.oecd.org`). The OECD period
 
 ## Related packages
 
-The **readoecd** package is part of a suite of R packages for economic and financial data:
-
-| Package | What it covers |
+| Package | Description |
 |---|---|
-| [`ons`](https://github.com/charlescoverdale/ons) | ONS data (GDP, inflation, unemployment, wages, trade, house prices, population) |
-| [`boe`](https://github.com/charlescoverdale/boe) | Bank of England data (Bank Rate, SONIA, gilt yields, exchange rates, mortgage rates) |
-| [`hmrc`](https://github.com/charlescoverdale/hmrc) | HMRC tax receipts, corporation tax, stamp duty, R&D credits, and tax gap data |
-| [`obr`](https://github.com/charlescoverdale/obr) | OBR fiscal forecasts and the Public Finances Databank |
-| [`readecb`](https://github.com/charlescoverdale/readecb) | European Central Bank data (policy rates, HICP, exchange rates, yield curves) |
-| [`fred`](https://github.com/charlescoverdale/fred) | US Federal Reserve (FRED) data (800,000+ economic time series) |
-| [`inflateR`](https://github.com/charlescoverdale/inflateR) | Adjust values for inflation using CPI or GDP deflator data |
+| [`ons`](https://github.com/charlescoverdale/ons) | UK Office for National Statistics data |
+| [`fred`](https://github.com/charlescoverdale/fred) | US Federal Reserve (FRED) data |
+| [`readecb`](https://github.com/charlescoverdale/readecb) | European Central Bank data |
+| [`comtrade`](https://github.com/charlescoverdale/comtrade) | UN Comtrade bilateral trade data |
+| [`inflationkit`](https://github.com/charlescoverdale/inflationkit) | Inflation analysis (decomposition, persistence, Phillips curve) |
+| [`inequality`](https://github.com/charlescoverdale/inequality) | Inequality and poverty measurement |
+| [`nowcast`](https://github.com/charlescoverdale/nowcast) | Economic nowcasting |
 
 ## Keywords
 
