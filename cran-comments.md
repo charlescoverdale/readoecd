@@ -1,41 +1,29 @@
-# CRAN submission comments — readoecd 0.3.3
+# CRAN submission comments — readoecd 0.3.4
 
-## Resubmission
+## Reason for this submission
 
-This is an update to readoecd 0.3.0 (currently on CRAN), addressing CRAN
-feedback (Prof Ripley, 2026-03-15).
+This is a maintenance update to readoecd 0.3.3, currently on CRAN.
 
-Changes since readoecd 0.3.0:
+* Fixed a cache tag bug in `get_oecd_unemployment()` when requesting all
+  countries, where the request did not get a distinct cache key.
+* Standardised the NULL check pattern across the data functions.
+* Corrected a function name in NEWS.md (`get_oecd_trade` should have
+  read `get_oecd_current_account`).
 
-* Examples now cache to `tempdir()` instead of the user's home directory,
-  fixing CRAN policy compliance for `\donttest` examples.
-* Cache directory is now configurable via `options(readoecd.cache_dir = ...)`.
-* Removed non-existent pkgdown URL from DESCRIPTION.
-* Examples now wrapped in `try()` to handle transient OECD API failures
-  gracefully during CRAN checks — the OECD API was intermittently
-  unavailable during the 0.3.2 pretest.
+No API changes.
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 0 notes (CRAN default settings, R 4.5.2, macOS).
 
-Checked on: macOS Sequoia 15.6.1 (aarch64), R 4.5.2.
+## Notes on data access
 
-## Network-dependent examples and tests
-
-All examples that make live API calls are wrapped in `\donttest{}` with
-`try()`, so they fail gracefully if the OECD API is unavailable. Caching is
-redirected to `tempdir()` so that no files are written to the user's home
-filespace. The single exception, `check_oecd_api()`, uses `\dontrun{}` as
-it is a connectivity diagnostic.
-
-All network-dependent tests use `skip_on_cran()` and `skip_if_offline()`.
-
-## OECD API
-
-Data is downloaded from the OECD Data Explorer REST API (sdmx.oecd.org). No
-authentication or API key is required.
+Unchanged: the package targets the OECD SDMX endpoint that replaced
+OECD.Stat, calling it on demand and caching locally using
+`tools::R_user_dir()`. No data is bundled. Network-using examples are
+wrapped in `\donttest{}` and tests in `skip_on_cran()`, so the check does
+not depend on the endpoint being reachable.
 
 ## Downstream dependencies
 
-None.
+None on CRAN.
