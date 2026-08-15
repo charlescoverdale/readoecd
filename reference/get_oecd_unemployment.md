@@ -87,7 +87,7 @@ if (!inherits(une, "try-error")) {
   head(une2020_avg[order(-une2020_avg$value), ], 5)
 }
 #>     country_name    value
-#> 1      Australia 6.478989
+#> 1      Australia 6.479147
 #> 2 United Kingdom 4.600000
 options(op)
 # }

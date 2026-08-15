@@ -72,14 +72,12 @@ Other productivity and trade:
 op <- options(readoecd.cache_dir = tempdir())
 prod <- try(get_oecd_productivity(c("AUS", "GBR", "USA"), start_year = 2000))
 #> Downloading from OECD API...
+#> Error in value[[3L]](cond) : Failed to reach the OECD API.
+#> ℹ Check your internet connection and try again.
+#> ℹ If the problem persists, the OECD may have changed their API.
+#> ℹ Check for a package update or report at
+#>   <https://github.com/charlescoverdale/readoecd/issues>
 if (!inherits(prod, "try-error")) head(prod)
-#>     country country_name year       series    value      unit
-#> 73      AUS    Australia 2000 GDP_PER_HOUR 34.09458 USD_PPP_H
-#> 74      AUS    Australia 2000 GDP_PER_HOUR 53.89475 USD_PPP_H
-#> 75      AUS    Australia 2000 GDP_PER_HOUR 44.73481 USD_PPP_H
-#> 220     AUS    Australia 2000 GDP_PER_HOUR 77.13215 USD_PPP_H
-#> 76      AUS    Australia 2001 GDP_PER_HOUR 47.77077 USD_PPP_H
-#> 77      AUS    Australia 2001 GDP_PER_HOUR 55.96281 USD_PPP_H
 options(op)
 # }
 ```
