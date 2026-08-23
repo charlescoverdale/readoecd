@@ -26,8 +26,8 @@ Other utilities:
 # \donttest{
 op <- options(readoecd.cache_dir = tempdir())
 clear_oecd_cache()
-#> Warning: cannot remove file '/tmp/RtmpWqOPrV/bslib-e9b2b13fa612f50d23e4850d93d60d01', reason 'Directory not empty'
-#> Warning: cannot remove file '/tmp/RtmpWqOPrV/downlit', reason 'Directory not empty'
+#> Warning: cannot remove file '/tmp/RtmpClqXZh/bslib-e9b2b13fa612f50d23e4850d93d60d01', reason 'Directory not empty'
+#> Warning: cannot remove file '/tmp/RtmpClqXZh/downlit', reason 'Directory not empty'
 #> Cleared 2 cached files.
 options(op)
 # }
