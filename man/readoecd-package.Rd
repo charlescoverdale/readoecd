@@ -11,6 +11,7 @@ Provides clean, tidy access to key economic indicators published by the 'Organis
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://charlescoverdale.github.io/readoecd/}
   \item \url{https://github.com/charlescoverdale/readoecd}
   \item Report bugs at \url{https://github.com/charlescoverdale/readoecd/issues}
 }
