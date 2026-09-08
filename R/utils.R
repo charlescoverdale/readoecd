@@ -40,13 +40,21 @@ oecd_fetch <- function(dataflow, filter, tag, start_year, refresh = FALSE) {
     httr2::request(url) |>
       httr2::req_timeout(120) |>
       httr2::req_retry(max_tries = 3, backoff = ~ 5) |>
+      # Return the response rather than throwing on 4xx and 5xx. Without this,
+      # req_perform() raised on every HTTP error and the tryCatch below
+      # reported all of them as "Failed to reach the OECD API", telling users
+      # to check their internet connection when the API had in fact answered.
+      # It also made the status handling further down unreachable.
+      httr2::req_error(is_error = function(resp) FALSE) |>
       httr2::req_perform(),
     error = function(e) {
+      # Now only genuine transport failures land here: no DNS, no route,
+      # connection refused, or the 120s timeout expiring.
       cli::cli_abort(c(
-        "Failed to reach the OECD API.",
-        "i" = "Check your internet connection and try again.",
-        "i" = "If the problem persists, the OECD may have changed their API.",
-        "i" = "Check for a package update or report at {.url https://github.com/charlescoverdale/readoecd/issues}"
+        "Could not reach the OECD API at {.url {url}}.",
+        "i" = "The request did not complete, so the API returned nothing to
+               interpret. Check your internet connection or proxy settings.",
+        "i" = "Original error: {conditionMessage(e)}"
       ))
     }
   )
@@ -58,6 +66,18 @@ oecd_fetch <- function(dataflow, filter, tag, start_year, refresh = FALSE) {
       "OECD API rate limit exceeded.",
       "i" = "Wait a few minutes and try again.",
       "i" = "Use {.code refresh = FALSE} (the default) to avoid repeated downloads."
+    ))
+  }
+
+  if (status == 422) {
+    cli::cli_abort(c(
+      "OECD API rejected the query for dataset {.val {tag}} (HTTP 422).",
+      "i" = "This means the dataflow's dimensions have changed and the
+             filter this package sends no longer matches it.",
+      "i" = "Response: {.val {substr(httr2::resp_body_string(resp), 1, 120)}}",
+      "i" = "This is a package bug, not something you can work around.
+             Please report it at
+             {.url https://github.com/charlescoverdale/readoecd/issues}"
     ))
   }
 

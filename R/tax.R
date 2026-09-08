@@ -11,7 +11,7 @@
 # parse_tax() retains the national aggregate (_T / _Z codes).
 
 OECD_TAX_DATAFLOW        <- "OECD.CTP.TPS,DSD_REV_COMP_OECD@DF_RSOECD,1.0"
-OECD_TAX_FILTER_TEMPLATE <- "COUNTRIES.TAX_REV...PT_B1GQ.A"
+OECD_TAX_FILTER_TEMPLATE <- "COUNTRIES.TAX_REV....PT_B1GQ.A"
 
 parse_tax <- function(df) {
   if (nrow(df) == 0) return(empty_oecd_result())
