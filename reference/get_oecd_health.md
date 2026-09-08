@@ -76,11 +76,11 @@ Other social indicators:
 op <- options(readoecd.cache_dir = tempdir())
 health <- try(get_oecd_health(c("AUS", "GBR", "USA"), start_year = 2000))
 #> Downloading from OECD API...
-#> Error in value[[3L]](cond) : Failed to reach the OECD API.
-#> ℹ Check your internet connection and try again.
-#> ℹ If the problem persists, the OECD may have changed their API.
-#> ℹ Check for a package update or report at
-#>   <https://github.com/charlescoverdale/readoecd/issues>
+#> Error in oecd_fetch(OECD_HEALTH_DATAFLOW, filter, tag, start_year, refresh) : 
+#>   OECD API returned 404 for dataset "health_AUS_GBR_USA".
+#> ℹ The OECD periodically migrates dataset identifiers.
+#> ℹ Check for a package update: `update.packages('readoecd')`
+#> ℹ Or report at: <https://github.com/charlescoverdale/readoecd/issues>
 if (!inherits(health, "try-error")) head(health)
 options(op)
 # }

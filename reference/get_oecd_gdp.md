@@ -83,7 +83,7 @@ if (!inherits(gdp, "try-error")) {
 }
 #>      country_name    value
 #> 26  United States 30769700
-#> 7  United Kingdom  4480458
+#> 16 United Kingdom  4480458
 #> 25      Australia  2080083
 options(op)
 # }

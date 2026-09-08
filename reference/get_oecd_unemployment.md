@@ -86,9 +86,9 @@ if (!inherits(une, "try-error")) {
   une2020_avg <- aggregate(value ~ country_name, une2020, mean)
   head(une2020_avg[order(-une2020_avg$value), ], 5)
 }
-#>     country_name    value
-#> 1      Australia 6.479147
-#> 2 United Kingdom 4.600000
+#>     country_name   value
+#> 1      Australia 6.47895
+#> 2 United Kingdom 4.60000
 options(op)
 # }
 ```

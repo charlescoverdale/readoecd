@@ -74,11 +74,11 @@ Other productivity and trade:
 op <- options(readoecd.cache_dir = tempdir())
 trade <- try(get_oecd_current_account(c("AUS", "DEU", "USA"), start_year = 2000))
 #> Downloading from OECD API...
-#> Error in value[[3L]](cond) : Failed to reach the OECD API.
-#> ℹ Check your internet connection and try again.
-#> ℹ If the problem persists, the OECD may have changed their API.
-#> ℹ Check for a package update or report at
-#>   <https://github.com/charlescoverdale/readoecd/issues>
+#> Error in oecd_fetch(OECD_TRADE_DATAFLOW, filter, tag, start_year, refresh) : 
+#>   OECD API returned 404 for dataset "trade_AUS_DEU_USA".
+#> ℹ The OECD periodically migrates dataset identifiers.
+#> ℹ Check for a package update: `update.packages('readoecd')`
+#> ℹ Or report at: <https://github.com/charlescoverdale/readoecd/issues>
 if (!inherits(trade, "try-error")) head(trade)
 options(op)
 # }

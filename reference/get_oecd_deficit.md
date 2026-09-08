@@ -78,11 +78,11 @@ Other fiscal:
 op <- options(readoecd.cache_dir = tempdir())
 deficit <- try(get_oecd_deficit(c("AUS", "GBR", "USA"), start_year = 2000))
 #> Downloading from OECD API...
-#> Error in value[[3L]](cond) : Failed to reach the OECD API.
-#> ℹ Check your internet connection and try again.
-#> ℹ If the problem persists, the OECD may have changed their API.
-#> ℹ Check for a package update or report at
-#>   <https://github.com/charlescoverdale/readoecd/issues>
+#> Error in oecd_fetch(OECD_DEFICIT_DATAFLOW, filter, tag, start_year, refresh) : 
+#>   OECD API returned 404 for dataset "deficit_AUS_GBR_USA".
+#> ℹ The OECD periodically migrates dataset identifiers.
+#> ℹ Check for a package update: `update.packages('readoecd')`
+#> ℹ Or report at: <https://github.com/charlescoverdale/readoecd/issues>
 if (!inherits(deficit, "try-error")) head(deficit)
 options(op)
 # }

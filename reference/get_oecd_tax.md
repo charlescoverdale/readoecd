@@ -67,12 +67,10 @@ Other fiscal:
 op <- options(readoecd.cache_dir = tempdir())
 tax <- try(get_oecd_tax(c("AUS", "GBR", "USA"), start_year = 2000))
 #> Downloading from OECD API...
-#> Error in value[[3L]](cond) : Failed to reach the OECD API.
-#> ℹ Check your internet connection and try again.
-#> ℹ If the problem persists, the OECD may have changed their API.
-#> ℹ Check for a package update or report at
-#>   <https://github.com/charlescoverdale/readoecd/issues>
 if (!inherits(tax, "try-error")) head(tax)
+#> [1] country      country_name year         series       value       
+#> [6] unit        
+#> <0 rows> (or 0-length row.names)
 options(op)
 # }
 ```
