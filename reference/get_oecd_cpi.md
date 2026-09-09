@@ -76,13 +76,13 @@ op <- options(readoecd.cache_dir = tempdir())
 cpi <- try(get_oecd_cpi(c("AUS", "GBR", "USA"), start_year = 2000))
 #> Downloading from OECD API...
 if (!inherits(cpi, "try-error")) head(cpi)
-#>   country country_name year        series    value                   unit
-#> 8     AUS    Australia 2000 CPI_INFLATION 4.457435 % change, year-on-year
-#> 7     AUS    Australia 2001 CPI_INFLATION 4.407135 % change, year-on-year
-#> 6     AUS    Australia 2002 CPI_INFLATION 2.981575 % change, year-on-year
-#> 5     AUS    Australia 2003 CPI_INFLATION 2.732596 % change, year-on-year
-#> 4     AUS    Australia 2004 CPI_INFLATION 2.343255 % change, year-on-year
-#> 3     AUS    Australia 2005 CPI_INFLATION 2.691832 % change, year-on-year
+#>    country country_name year        series    value                   unit
+#> 77     AUS    Australia 2000 CPI_INFLATION 4.457435 % change, year-on-year
+#> 76     AUS    Australia 2001 CPI_INFLATION 4.407135 % change, year-on-year
+#> 75     AUS    Australia 2002 CPI_INFLATION 2.981575 % change, year-on-year
+#> 74     AUS    Australia 2003 CPI_INFLATION 2.732596 % change, year-on-year
+#> 73     AUS    Australia 2004 CPI_INFLATION 2.343255 % change, year-on-year
+#> 72     AUS    Australia 2005 CPI_INFLATION 2.691832 % change, year-on-year
 options(op)
 # }
 ```

@@ -68,9 +68,13 @@ op <- options(readoecd.cache_dir = tempdir())
 tax <- try(get_oecd_tax(c("AUS", "GBR", "USA"), start_year = 2000))
 #> Downloading from OECD API...
 if (!inherits(tax, "try-error")) head(tax)
-#> [1] country      country_name year         series       value       
-#> [6] unit        
-#> <0 rows> (or 0-length row.names)
+#>   country country_name year      series  value     unit
+#> 1     AUS    Australia 2000 TAX_REVENUE 30.380 % of GDP
+#> 2     AUS    Australia 2001 TAX_REVENUE 28.859 % of GDP
+#> 3     AUS    Australia 2002 TAX_REVENUE 29.736 % of GDP
+#> 4     AUS    Australia 2003 TAX_REVENUE 29.833 % of GDP
+#> 5     AUS    Australia 2004 TAX_REVENUE 30.134 % of GDP
+#> 6     AUS    Australia 2005 TAX_REVENUE 29.835 % of GDP
 options(op)
 # }
 ```

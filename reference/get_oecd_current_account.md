@@ -74,12 +74,21 @@ Other productivity and trade:
 op <- options(readoecd.cache_dir = tempdir())
 trade <- try(get_oecd_current_account(c("AUS", "DEU", "USA"), start_year = 2000))
 #> Downloading from OECD API...
-#> Error in oecd_fetch(OECD_TRADE_DATAFLOW, filter, tag, start_year, refresh) : 
-#>   OECD API returned 404 for dataset "trade_AUS_DEU_USA".
-#> ℹ The OECD periodically migrates dataset identifiers.
-#> ℹ Check for a package update: `update.packages('readoecd')`
-#> ℹ Or report at: <https://github.com/charlescoverdale/readoecd/issues>
 if (!inherits(trade, "try-error")) head(trade)
+#>    country country_name year          series      value
+#> 52     AUS    Australia 2000 CURRENT_ACCOUNT -16028.220
+#> 53     AUS    Australia 2001 CURRENT_ACCOUNT  -8639.672
+#> 54     AUS    Australia 2002 CURRENT_ACCOUNT -16207.060
+#> 55     AUS    Australia 2003 CURRENT_ACCOUNT -28784.950
+#> 56     AUS    Australia 2004 CURRENT_ACCOUNT -41381.860
+#> 57     AUS    Australia 2005 CURRENT_ACCOUNT -43573.640
+#>                            unit
+#> 52 Millions USD (exchange rate)
+#> 53 Millions USD (exchange rate)
+#> 54 Millions USD (exchange rate)
+#> 55 Millions USD (exchange rate)
+#> 56 Millions USD (exchange rate)
+#> 57 Millions USD (exchange rate)
 options(op)
 # }
 ```

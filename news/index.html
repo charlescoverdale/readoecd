@@ -34,6 +34,51 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.4" id="readoecd-034">readoecd 0.3.4<a class="anchor" aria-label="anchor" href="#readoecd-034"></a></h2>
+<p>Repair release. Five of the eight data functions were broken against the live OECD API and returned nothing, or in one case an empty frame, without saying why. All five work again.</p>
+<div class="section level3">
+<h3 id="errors-were-being-reported-as-a-connection-problem-0-3-4">Errors were being reported as a connection problem<a class="anchor" aria-label="anchor" href="#errors-were-being-reported-as-a-connection-problem-0-3-4"></a></h3>
+<p><code>oecd_fetch()</code> wrapped <code>req_perform()</code> in a <code>tryCatch</code> that reported every failure as “Failed to reach the OECD API. Check your internet connection”. Because <code>req_perform()</code> raises on 4xx and 5xx by default, that handler caught every HTTP error the API returned, so a 404 or a rate limit looked like a broken network. It also made the 429 and 404 branches further down the function unreachable: they had never run. The response is now allowed through with <code>req_error(is_error = FALSE)</code>, and the <code>tryCatch</code> catches only genuine transport failures.</p>
+<p>With the real errors visible, five separate upstream changes turned up. Nothing had been withdrawn; the OECD had moved versions and renamed codes.</p>
+<table class="table"><colgroup><col width="33%"><col width="33%"><col width="33%"></colgroup><thead><tr><th>Function</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr></thead><tbody><tr><td><code><a href="../reference/get_oecd_tax.html">get_oecd_tax()</a></code></td>
+<td>Dataflow gained a <code>CTRY_SPECIFIC_REVENUE</code> dimension, so the filter was one position short and returned HTTP 422</td>
+<td>Added the position</td>
+</tr><tr><td><code><a href="../reference/get_oecd_health.html">get_oecd_health()</a></code></td>
+<td>Requesting version 1.0 of a dataflow now at 1.1 returns no records</td>
+<td>Bumped to 1.1, and <code>PT_GDP</code> became <code>PT_B1GQ</code>
+</td>
+</tr><tr><td><code><a href="../reference/get_oecd_deficit.html">get_oecd_deficit()</a></code></td>
+<td>
+<code>CHAPTER = "_Z"</code> matched nothing</td>
+<td>Left the dimension open</td>
+</tr><tr><td><code><a href="../reference/get_oecd_current_account.html">get_oecd_current_account()</a></code></td>
+<td>
+<code>COUNTERPART_AREA</code>, <code>FS_ENTRY</code> and <code>ADJUSTMENT</code> all used <code>_Z</code>
+</td>
+<td>Now <code>WXD</code>, <code>T</code> and <code>N</code>
+</td>
+</tr><tr><td><code><a href="../reference/get_oecd_productivity.html">get_oecd_productivity()</a></code></td>
+<td>
+<code>DSD_PDB@DF_PDB_LV</code> answers HTTP 500 for every query</td>
+<td>Reads <code>DSD_PDB@DF_PDB</code> version 2.0</td>
+</tr></tbody></table></div>
+<div class="section level3">
+<h3 id="tax-revenue-was-returning-an-empty-frame-0-3-4">Tax revenue was returning an empty frame<a class="anchor" aria-label="anchor" href="#tax-revenue-was-returning-an-empty-frame-0-3-4"></a></h3>
+<p>Once the request succeeded, <code>parse_tax()</code> still returned nothing: all three of its filters used codes the OECD has since renamed. The institutional sector total is <code>S13</code>, not <code>_T</code>, and both revenue dimensions use <code>_T</code> rather than <code>_Z</code>. Verified against Australia, which now reports 27.8 to 29.5 per cent of GDP across 2015 to 2021, matching the published ratio.</p>
+</div>
+<div class="section level3">
+<h3 id="productivity-needed-more-than-a-new-dataflow-0-3-4">Productivity needed more than a new dataflow<a class="anchor" aria-label="anchor" href="#productivity-needed-more-than-a-new-dataflow-0-3-4"></a></h3>
+<p><code>DF_PDB</code> is the full productivity database rather than the levels extract the package used to read, so the same measure code appears as a level, a growth rate and an index. Taking it unfiltered mixed GDP per hour in US dollars with percentage changes, including negative values. <code>parse_productivity()</code> now selects the level, PPP-converted, total-economy slice, and takes chain linked volume rather than current prices: on the current-price basis Australian GDP per hour rises 38 per cent over 2015 to 2021 against 6 per cent in volume terms, and that difference is inflation rather than productivity.</p>
+</div>
+<div class="section level3">
+<h3 id="rate-limiting-0-3-4">Rate limiting<a class="anchor" aria-label="anchor" href="#rate-limiting-0-3-4"></a></h3>
+<p>The API refuses further requests after a few dozen in quick succession, which a test run or a loop over countries reaches easily. Requests are now throttled to one per second, and 429 and 5xx responses are explicitly treated as transient so the existing retry applies to them. The network tests skip rather than fail when the portal is refusing, via a new <code>expect_oecd()</code> helper, so the suite stays a useful signal.</p>
+</div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.4" id="readoecd-034-1">readoecd 0.3.4<a class="anchor" aria-label="anchor" href="#readoecd-034-1"></a></h2>
 <ul><li>Fixed incorrect function name in NEWS.md (<code>get_oecd_trade</code> corrected to <code>get_oecd_current_account</code>).</li>
 <li>Fixed cache tag bug in <code><a href="../reference/get_oecd_unemployment.html">get_oecd_unemployment()</a></code> when requesting all countries.</li>
 <li>Standardised NULL check pattern across all data functions.</li>

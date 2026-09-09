@@ -78,12 +78,14 @@ Other fiscal:
 op <- options(readoecd.cache_dir = tempdir())
 deficit <- try(get_oecd_deficit(c("AUS", "GBR", "USA"), start_year = 2000))
 #> Downloading from OECD API...
-#> Error in oecd_fetch(OECD_DEFICIT_DATAFLOW, filter, tag, start_year, refresh) : 
-#>   OECD API returned 404 for dataset "deficit_AUS_GBR_USA".
-#> ℹ The OECD periodically migrates dataset identifiers.
-#> ℹ Check for a package update: `update.packages('readoecd')`
-#> ℹ Or report at: <https://github.com/charlescoverdale/readoecd/issues>
 if (!inherits(deficit, "try-error")) head(deficit)
+#>    country country_name year           series      value     unit
+#> 75     AUS    Australia 2000 GOVT_NET_LENDING -1.3381041 % of GDP
+#> 25     AUS    Australia 2001 GOVT_NET_LENDING -0.7788197 % of GDP
+#> 4      AUS    Australia 2002 GOVT_NET_LENDING  0.6761192 % of GDP
+#> 69     AUS    Australia 2003 GOVT_NET_LENDING  0.7640926 % of GDP
+#> 1      AUS    Australia 2004 GOVT_NET_LENDING  0.8962921 % of GDP
+#> 27     AUS    Australia 2005 GOVT_NET_LENDING  1.5711434 % of GDP
 options(op)
 # }
 ```
