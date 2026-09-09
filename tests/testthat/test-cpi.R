@@ -6,7 +6,7 @@ test_that("get_oecd_cpi() returns correct structure", {
   skip_on_cran()
   skip_if_offline()
 
-  df <- get_oecd_cpi(c("AUS", "GBR"), start_year = 2010)
+  df <- expect_oecd(get_oecd_cpi(c("AUS", "GBR"), start_year = 2010))
 
   expect_s3_class(df, "data.frame")
   expect_named(df, c("country", "country_name", "year", "series", "value", "unit"))
@@ -22,7 +22,7 @@ test_that("get_oecd_cpi() returns plausible values", {
   skip_on_cran()
   skip_if_offline()
 
-  df <- get_oecd_cpi("GBR", start_year = 2020)
+  df <- expect_oecd(get_oecd_cpi("GBR", start_year = 2020))
   expect_true(nrow(df) > 0)
   expect_true(all(df$series == "CPI_INFLATION"))
   expect_true(all(df$unit == "% change, year-on-year"))

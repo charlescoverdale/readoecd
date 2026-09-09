@@ -39,7 +39,19 @@ oecd_fetch <- function(dataflow, filter, tag, start_year, refresh = FALSE) {
   resp <- tryCatch(
     httr2::request(url) |>
       httr2::req_timeout(120) |>
-      httr2::req_retry(max_tries = 3, backoff = ~ 5) |>
+      # Stay under the OECD's rate limit rather than discovering it. The
+      # portal starts refusing after a few dozen requests in quick
+      # succession, which a test suite or a loop over countries reaches
+      # easily. One request per second costs nothing on a single call.
+      httr2::req_throttle(rate = 1) |>
+      httr2::req_retry(
+        max_tries = 3, backoff = ~ 5,
+        # 429 carries a Retry-After the default handler honours; 5xx from
+        # this portal are transient too.
+        is_transient = function(resp) {
+          httr2::resp_status(resp) == 429L || httr2::resp_status(resp) >= 500L
+        }
+      ) |>
       # Return the response rather than throwing on 4xx and 5xx. Without this,
       # req_perform() raised on every HTTP error and the tryCatch below
       # reported all of them as "Failed to reach the OECD API", telling users

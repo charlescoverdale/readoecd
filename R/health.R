@@ -11,8 +11,8 @@
 # Remaining dimensions left open; parse_health() retains
 # total expenditure (FINANCING_SCHEME=_T, FUNCTION=HC, PROVIDER=_T).
 
-OECD_HEALTH_DATAFLOW        <- "OECD.ELS.HD,DSD_SHA@DF_SHA,1.0"
-OECD_HEALTH_FILTER_TEMPLATE <- "COUNTRIES.A.EXP_HEALTH.PT_GDP........"
+OECD_HEALTH_DATAFLOW        <- "OECD.ELS.HD,DSD_SHA@DF_SHA,1.1"
+OECD_HEALTH_FILTER_TEMPLATE <- "COUNTRIES.A.EXP_HEALTH.PT_B1GQ........"
 
 parse_health <- function(df) {
   if (nrow(df) == 0) return(empty_oecd_result())

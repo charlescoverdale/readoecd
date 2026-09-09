@@ -10,10 +10,35 @@
 # parse_productivity() selects GDP per hour worked (GDPHRS) where available,
 # falling back to GDP per capita (GDPPOP) in USD PPP.
 
-OECD_PRODUCTIVITY_DATAFLOW        <- "OECD.SDD.TPS,DSD_PDB@DF_PDB_LV,1.0"
-OECD_PRODUCTIVITY_FILTER_TEMPLATE <- "COUNTRIES.A........"
+OECD_PRODUCTIVITY_DATAFLOW        <- "OECD.SDD.TPS,DSD_PDB@DF_PDB,2.0"
+OECD_PRODUCTIVITY_FILTER_TEMPLATE <- "COUNTRIES.A......."
 
 parse_productivity <- function(df) {
+  if (nrow(df) == 0) return(empty_oecd_result())
+
+  # Reduce to comparable levels before choosing a measure.
+  #
+  # The OECD withdrew DSD_PDB@DF_PDB_LV ("Productivity levels"), which now
+  # answers HTTP 500 for every query, so this function reads DF_PDB
+  # ("Productivity database") instead. That dataflow is much broader: the
+  # same MEASURE code appears as a level, a growth rate and an index, so
+  # taking it unfiltered mixes GDP per hour in USD with percentage changes
+  # that can be negative. Selecting the level, PPP-converted, total-economy
+  # slice reproduces what DF_PDB_LV used to return.
+  if ("TRANSFORMATION" %in% names(df))
+    df <- df[df[["TRANSFORMATION"]] == "N", ]         # level, not GY or IX
+  if ("CONVERSION_TYPE" %in% names(df))
+    df <- df[df[["CONVERSION_TYPE"]] == "PPP", ]      # comparable across countries
+  if ("ACTIVITY" %in% names(df))
+    df <- df[df[["ACTIVITY"]] == "_T", ]              # total economy
+  # Chain linked volume, not current prices. Both are published, and taking
+  # both returns two rows per year. Current prices carry inflation into the
+  # series: Australian GDP per hour rises 38 per cent over 2015 to 2021 on
+  # that basis against 6 per cent in volume terms. Productivity should not
+  # move with the price level, so the volume measure is the one reported.
+  if ("PRICE_BASE" %in% names(df) && any(df[["PRICE_BASE"]] == "LR"))
+    df <- df[df[["PRICE_BASE"]] == "LR", ]
+
   if (nrow(df) == 0) return(empty_oecd_result())
 
   # Prefer GDP per hour worked; fall back to GDP per capita

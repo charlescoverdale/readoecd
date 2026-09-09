@@ -1,5 +1,5 @@
 test_that("list_oecd_countries() returns correct structure", {
-  df <- list_oecd_countries()
+  df <- expect_oecd(list_oecd_countries())
   expect_s3_class(df, "data.frame")
   expect_equal(nrow(df), 38L)
   expect_named(df, c("iso3", "name"))
@@ -8,7 +8,7 @@ test_that("list_oecd_countries() returns correct structure", {
 })
 
 test_that("list_oecd_countries() contains key members", {
-  iso3 <- list_oecd_countries()$iso3
+  iso3 <- expect_oecd(list_oecd_countries())$iso3
   expect_true("AUS" %in% iso3)
   expect_true("GBR" %in% iso3)
   expect_true("USA" %in% iso3)

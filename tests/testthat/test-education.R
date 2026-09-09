@@ -6,7 +6,7 @@ test_that("get_oecd_education() returns correct structure", {
   skip_on_cran()
   skip_if_offline()
 
-  df <- get_oecd_education(c("AUS", "GBR"), start_year = 2010)
+  df <- expect_oecd(get_oecd_education(c("AUS", "GBR"), start_year = 2010))
 
   expect_s3_class(df, "data.frame")
   expect_named(df, c("country", "country_name", "year", "series", "value", "unit"))
@@ -22,7 +22,7 @@ test_that("get_oecd_education() returns plausible values", {
   skip_on_cran()
   skip_if_offline()
 
-  df <- get_oecd_education("AUS", start_year = 2015)
+  df <- expect_oecd(get_oecd_education("AUS", start_year = 2015))
   expect_true(nrow(df) > 0)
   expect_true(all(df$series == "EDU_EXPENDITURE"))
   expect_true(all(df$unit == "% of GDP"))

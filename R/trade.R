@@ -11,7 +11,7 @@
 # parse_trade() selects current account (CA) or goods-and-services (CA_G_S).
 
 OECD_TRADE_DATAFLOW        <- "OECD.SDD.TPS,DSD_BOP@DF_BOP,1.0"
-OECD_TRADE_FILTER_TEMPLATE <- "COUNTRIES._Z..B._Z.A.USD_EXC._Z"
+OECD_TRADE_FILTER_TEMPLATE <- "COUNTRIES.WXD..B.T.A.USD_EXC.N"
 
 parse_trade <- function(df) {
   if (nrow(df) == 0) return(empty_oecd_result())

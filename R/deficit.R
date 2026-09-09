@@ -12,7 +12,7 @@
 # A positive value indicates a surplus; a negative value indicates a deficit.
 
 OECD_DEFICIT_DATAFLOW        <- "OECD.SDD.NAD,DSD_NAAG@DF_NAAG,1.0"
-OECD_DEFICIT_FILTER_TEMPLATE <- "A.COUNTRIES.B9S13.PT_B1GQ._Z"
+OECD_DEFICIT_FILTER_TEMPLATE <- "A.COUNTRIES.B9S13.PT_B1GQ."
 
 parse_deficit <- function(df) {
   if (nrow(df) == 0) return(empty_oecd_result())

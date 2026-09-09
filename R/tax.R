@@ -16,13 +16,22 @@ OECD_TAX_FILTER_TEMPLATE <- "COUNTRIES.TAX_REV....PT_B1GQ.A"
 parse_tax <- function(df) {
   if (nrow(df) == 0) return(empty_oecd_result())
 
-  # Retain national totals: SECTOR="_T", revenue dimensions="_Z"
+  # Retain national totals. The OECD renamed every one of these codes when it
+  # restructured the Revenue Statistics dataflow: the institutional-sector
+  # total is now S13 (general government) rather than "_T", and both revenue
+  # dimensions use "_T" rather than "_Z". The old values matched nothing, so
+  # the request succeeded and the parser silently returned an empty frame.
+  #
+  # Note that "_T" is not the only total on STANDARD_REVENUE: the codelist
+  # also carries T_AA (cash basis), T_AB (accrual), T_GROSS, T_NET and
+  # T_SPLIT. "_T" is the headline "Total tax revenue" series, which is what
+  # this function has always reported as a share of GDP.
   if ("SECTOR" %in% names(df))
-    df <- df[df[["SECTOR"]] == "_T", ]
+    df <- df[df[["SECTOR"]] == "S13", ]
   if ("STANDARD_REVENUE" %in% names(df))
-    df <- df[df[["STANDARD_REVENUE"]] == "_Z", ]
+    df <- df[df[["STANDARD_REVENUE"]] == "_T", ]
   if ("CTRY_SPECIFIC_REVENUE" %in% names(df))
-    df <- df[df[["CTRY_SPECIFIC_REVENUE"]] == "_Z", ]
+    df <- df[df[["CTRY_SPECIFIC_REVENUE"]] == "_T", ]
 
   if (nrow(df) == 0) return(empty_oecd_result())
 
