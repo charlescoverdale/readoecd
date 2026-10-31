@@ -251,6 +251,7 @@ readoecd uses the OECD Data Explorer REST API (`sdmx.oecd.org`). The OECD period
 | [`inflationkit`](https://github.com/charlescoverdale/inflationkit) | Inflation analysis (decomposition, persistence, Phillips curve) |
 | [`inequality`](https://github.com/charlescoverdale/inequality) | Inequality and poverty measurement |
 | [`nowcast`](https://github.com/charlescoverdale/nowcast) | Economic nowcasting |
+| [`readimf`](https://github.com/charlescoverdale/readimf) | IMF data (IFS, WEO, COFER, Direction of Trade) |
 
 ## Keywords
 
