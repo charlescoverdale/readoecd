@@ -1,8 +1,8 @@
-# readoecd — full API reference
+# readoecd: full API reference
 
 > Provides clean, tidy access to key economic indicators published by the 'Organisation for Economic Co-operation and Development' ('OECD'), covering GDP, CPI inflation, unemployment, tax revenue, go...
 
-- Version: 0.3.4
+- Version: 0.3.5
 - Install: `install.packages("readoecd")`
 - CRAN: https://CRAN.R-project.org/package=readoecd
 - GitHub: https://github.com/charlescoverdale/readoecd
@@ -77,9 +77,9 @@ get_oecd_cpi(countries = "all", start_year = 1990, refresh = FALSE)
 
 **Arguments**
 
-- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
-- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
-- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+- `countries`: Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year`: Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh`: Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
 
 **Returns**
 
@@ -110,9 +110,9 @@ get_oecd_current_account(countries = "all", start_year = 1990, refresh = FALSE)
 
 **Arguments**
 
-- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
-- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
-- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+- `countries`: Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year`: Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh`: Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
 
 **Returns**
 
@@ -143,9 +143,9 @@ get_oecd_deficit(countries = "all", start_year = 1990, refresh = FALSE)
 
 **Arguments**
 
-- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
-- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
-- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+- `countries`: Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year`: Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh`: Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
 
 **Returns**
 
@@ -176,9 +176,9 @@ get_oecd_education(countries = "all", start_year = 1990, refresh = FALSE)
 
 **Arguments**
 
-- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
-- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
-- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+- `countries`: Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year`: Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh`: Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
 
 **Returns**
 
@@ -209,9 +209,9 @@ get_oecd_gdp(countries = "all", start_year = 1990, refresh = FALSE)
 
 **Arguments**
 
-- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all 38 OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
-- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
-- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+- `countries`: Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all 38 OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year`: Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh`: Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
 
 **Returns**
 
@@ -247,9 +247,9 @@ get_oecd_health(countries = "all", start_year = 1990, refresh = FALSE)
 
 **Arguments**
 
-- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
-- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
-- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+- `countries`: Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year`: Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh`: Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
 
 **Returns**
 
@@ -280,9 +280,9 @@ get_oecd_inequality(countries = "all", start_year = 1990, refresh = FALSE)
 
 **Arguments**
 
-- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
-- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
-- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+- `countries`: Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year`: Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh`: Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
 
 **Returns**
 
@@ -313,9 +313,9 @@ get_oecd_productivity(countries = "all", start_year = 1990, refresh = FALSE)
 
 **Arguments**
 
-- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
-- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
-- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+- `countries`: Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year`: Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh`: Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
 
 **Returns**
 
@@ -346,9 +346,9 @@ get_oecd_tax(countries = "all", start_year = 1990, refresh = FALSE)
 
 **Arguments**
 
-- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
-- `start_year` — Numeric. Earliest year to include. Defaults to `1990`.
-- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+- `countries`: Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all available OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year`: Numeric. Earliest year to include. Defaults to `1990`.
+- `refresh`: Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
 
 **Returns**
 
@@ -379,9 +379,9 @@ get_oecd_unemployment(countries = "all", start_year = 2000, refresh = FALSE)
 
 **Arguments**
 
-- `countries` — Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all 38 OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
-- `start_year` — Numeric. Earliest year to include. Defaults to `2000`.
-- `refresh` — Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
+- `countries`: Character vector of ISO 3166-1 alpha-3 country codes, or `"all"` for all 38 OECD members. Defaults to `"all"`. Run `list_oecd_countries()` to see available codes.
+- `start_year`: Numeric. Earliest year to include. Defaults to `2000`.
+- `refresh`: Logical. If `TRUE`, re-download even if a cached copy exists. Defaults to `FALSE`.
 
 **Returns**
 
