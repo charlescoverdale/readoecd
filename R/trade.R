@@ -98,6 +98,6 @@ get_oecd_current_account <- function(countries = "all", start_year = 1990,
   tag       <- if (is.null(countries)) "trade_all" else
     paste0("trade_", paste(sort(countries), collapse = "_"))
   raw    <- oecd_fetch(OECD_TRADE_DATAFLOW, filter, tag, start_year, refresh)
-  result <- parse_trade(raw)
+  result <- oecd_members_only(parse_trade(raw))
   result[result$year >= start_year, ]
 }

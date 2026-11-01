@@ -5,8 +5,10 @@
 A bug-fix release. Every data function returned its locally cached copy
 indefinitely, so repeated calls never saw later OECD releases or
 revisions. Cached copies now expire after 7 days (configurable with an
-option). `citation("readoecd")` also reported a hard-coded version; it now
-reads the installed one.
+option). `countries = "all"`, documented as the 38 members, also returned OECD
+and EU aggregates and partner economies as ordinary rows; it now returns
+the members only. `citation("readoecd")` also reported a hard-coded
+version; it now reads the installed one.
 
 ## R CMD check results
 

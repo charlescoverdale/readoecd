@@ -103,6 +103,6 @@ get_oecd_gdp <- function(countries = "all", start_year = 1990,
   tag       <- if (is.null(countries)) "gdp_all" else
     paste0("gdp_", paste(sort(countries), collapse = "_"))
   raw    <- oecd_fetch(OECD_GDP_DATAFLOW, filter, tag, start_year, refresh)
-  result <- parse_gdp(raw)
+  result <- oecd_members_only(parse_gdp(raw))
   result[result$year >= start_year, ]
 }

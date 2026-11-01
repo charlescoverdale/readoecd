@@ -50,6 +50,14 @@ test_that("clear_oecd_cache() runs without error", {
   expect_no_error(clear_oecd_cache())
 })
 
+test_that("oecd_members_only() drops aggregates and partner economies", {
+  df <- data.frame(country = c("OECD", "GBR", "EU27_2020", "IND", "USA"),
+                   value = 1:5)
+  out <- oecd_members_only(df)
+  expect_equal(out$country, c("GBR", "USA"))
+  expect_equal(oecd_members_only(df[0, ])$country, character(0))
+})
+
 test_that("oecd_cache_ttl() defaults to 7 days and rejects bad values", {
   op <- options(readoecd.cache_ttl = NULL)
   on.exit(options(op))

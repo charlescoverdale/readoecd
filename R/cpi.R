@@ -73,6 +73,6 @@ get_oecd_cpi <- function(countries = "all", start_year = 1990,
   tag       <- if (is.null(countries)) "cpi_all" else
     paste0("cpi_", paste(sort(countries), collapse = "_"))
   raw    <- oecd_fetch(OECD_CPI_DATAFLOW, filter, tag, start_year, refresh)
-  result <- parse_cpi(raw)
+  result <- oecd_members_only(parse_cpi(raw))
   result[result$year >= start_year, ]
 }

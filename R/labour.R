@@ -105,7 +105,7 @@ get_oecd_unemployment <- function(countries = "all",
     paste0("une_", paste(sort(countries), collapse = "_"))
 
   raw    <- oecd_fetch(OECD_UNE_DATAFLOW, filter, tag, start_year, refresh)
-  result <- parse_unemployment(raw)
+  result <- oecd_members_only(parse_unemployment(raw))
 
   # Apply start_year filter (period is "YYYY-MM")
   result[as.integer(substr(result$period, 1, 4)) >= start_year, ]

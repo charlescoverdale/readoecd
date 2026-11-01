@@ -9,6 +9,18 @@ passed or the cache was cleared. Cached copies are now downloaded again
 once they are 7 days old. Set `options(readoecd.cache_ttl = )` to a
 number of hours to change this.
 
+## `countries = "all"` returns the 38 members, as documented
+
+With `countries = "all"` the request leaves the country dimension open,
+and the OECD now answers with its aggregates (OECD, OECD Europe, the
+euro area, the EU) and partner economies (India, Indonesia, South
+Africa and others) alongside the members. They came through as ordinary
+rows: `get_oecd_gdp()` ranked "OECD" and "OECD Europe" above the United
+States, and any sum or average over the result double-counted. Every
+`get_oecd_*()` function now keeps the 38 members only, which is what
+`"all"` was documented to mean and what `validate_countries()` already
+enforced for explicit codes.
+
 ## Citation
 
 `citation("readoecd")` reported version 0.3.0 whatever version was

@@ -52,12 +52,12 @@ Source: **OECD National Accounts** (Main Aggregates, Table 1). Annual GDP measur
 gdp <- get_oecd_gdp("all", start_year = 2015)
 latest <- gdp[gdp$year == max(gdp$year), ]
 head(latest[order(-latest$value), c("country_name", "year", "value")], 5)
-#>        country_name year    value
-#>   United States     2023 27357916
-#>         Germany     2023  4457178
-#>           Japan     2023  4212945
-#>  United Kingdom     2023  3081866
-#>          France     2023  2923489
+#>    country_name year    value
+#>   United States 2025 30774100
+#>           Japan 2025  6836108
+#>         Germany 2025  6380023
+#>  United Kingdom 2025  4496301
+#>          France 2025  4414074
 
 # G7 comparison since 2000
 g7 <- get_oecd_gdp(c("CAN", "FRA", "DEU", "ITA", "JPN", "GBR", "USA"),
@@ -72,11 +72,11 @@ Source: **OECD Prices database** (COICOP 1999 classification). Annual year-on-ye
 # Inflation through the post-COVID price surge
 cpi <- get_oecd_cpi(c("AUS", "GBR", "USA", "DEU"), start_year = 2018)
 cpi[cpi$year == 2022, c("country_name", "year", "value")]
-#>    country_name year value
-#>       Australia 2022   6.6
-#>         Germany 2022   8.7
-#>  United Kingdom 2022   9.1
-#>   United States 2022   8.0
+#>    country_name year    value
+#>       Australia 2022 6.594097
+#>         Germany 2022 6.872574
+#>  United Kingdom 2022 7.900000
+#>   United States 2022 8.002800
 ```
 
 ### `get_oecd_unemployment()` - Unemployment Rate
@@ -90,10 +90,10 @@ unemp <- get_oecd_unemployment(c("AUS", "GBR", "USA"), start_year = 2018)
 # Peak unemployment by country during 2020
 peak_2020 <- unemp[substr(unemp$period, 1, 4) == "2020", ]
 aggregate(value ~ country_name, data = peak_2020, FUN = max)
-#>    country_name value
-#>       Australia  7.47
-#>  United Kingdom  5.10
-#>   United States 14.70
+#>    country_name     value
+#>       Australia  7.446437
+#>  United Kingdom  5.300000
+#>   United States 14.800000
 ```
 
 ### `get_oecd_tax()` - Tax Revenue
@@ -107,13 +107,12 @@ tax <- get_oecd_tax(c("DNK", "SWE", "NOR", "AUS", "GBR", "USA"),
 
 latest_tax <- tax[tax$year == max(tax$year), c("country_name", "year", "value")]
 latest_tax[order(-latest_tax$value), ]
-#>    country_name year value
-#>         Denmark 2022  46.0
-#>          Sweden 2022  42.6
-#>          Norway 2022  42.2
-#>  United Kingdom 2022  35.3
-#>       Australia 2022  29.5
-#>   United States 2022  27.7
+#>    country_name year  value
+#>          Norway 2022 44.302
+#>         Denmark 2022 41.890
+#>          Sweden 2022 41.315
+#>  United Kingdom 2022 35.299
+#>   United States 2022 27.656
 ```
 
 ### `get_oecd_deficit()` - Government Deficit
@@ -124,11 +123,23 @@ Source: **OECD National Accounts** (General Government Accounts, NAAG). General 
 # Fiscal positions during and after the pandemic
 deficit <- get_oecd_deficit(c("AUS", "GBR", "USA", "DEU"), start_year = 2018)
 deficit[deficit$year %in% 2019:2022, c("country_name", "year", "value")]
-#>    country_name year  value
-#>       Australia 2019  0.02
-#>       Australia 2020 -4.45
-#>       Australia 2021 -4.97
-#>       Australia 2022 -1.70
+#>    country_name year      value
+#>       Australia 2019  -6.771071
+#>       Australia 2020  -8.123823
+#>       Australia 2021  -4.279212
+#>       Australia 2022  -1.698478
+#>         Germany 2019   1.319671
+#>         Germany 2020  -4.345754
+#>         Germany 2021  -3.167685
+#>         Germany 2022  -1.852477
+#>  United Kingdom 2019  -2.319971
+#>  United Kingdom 2020 -12.890897
+#>  United Kingdom 2021  -7.431520
+#>  United Kingdom 2022  -4.472863
+#>   United States 2019  -6.693298
+#>   United States 2020 -14.986540
+#>   United States 2021 -11.951068
+#>   United States 2022  -3.720331
 ```
 
 ### `get_oecd_health()` - Health Expenditure
@@ -140,12 +151,12 @@ Source: **System of Health Accounts (SHA)**. Total current health expenditure as
 health <- get_oecd_health("all", start_year = 2015)
 latest_hlth <- health[health$year == max(health$year), ]
 head(latest_hlth[order(-latest_hlth$value), c("country_name", "year", "value")], 5)
-#>    country_name year value
-#>   United States 2022  16.6
-#>         Germany 2022  12.7
-#>          France 2022  11.9
-#>     Switzerland 2022  11.3
-#>       Australia 2022   9.7
+#>   country_name year  value
+#>  United States 2025 17.598
+#>        Germany 2025 12.735
+#>        Austria 2025 11.926
+#>    Switzerland 2025 11.611
+#>         Canada 2025 11.484
 ```
 
 ### `get_oecd_education()` - Education Expenditure
@@ -234,7 +245,7 @@ All `get_oecd_*()` functions return a tidy long-format data frame with consisten
 
 ## Caching
 
-Downloaded data is stored in your user cache directory (`tools::R_user_dir("readoecd", "cache")`). Subsequent calls return the cached copy instantly. Use `refresh = TRUE` to force a re-download, or `clear_oecd_cache()` to wipe all cached files.
+Downloaded data is stored in your user cache directory (`tools::R_user_dir("readoecd", "cache")`). Calls in the next 7 days return the cached copy instantly; after that it is downloaded again (set `options(readoecd.cache_ttl = )` in hours to change this). Use `refresh = TRUE` to force a re-download, or `clear_oecd_cache()` to wipe all cached files.
 
 ## API stability
 

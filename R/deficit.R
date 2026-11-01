@@ -79,6 +79,6 @@ get_oecd_deficit <- function(countries = "all", start_year = 1990,
   tag       <- if (is.null(countries)) "deficit_all" else
     paste0("deficit_", paste(sort(countries), collapse = "_"))
   raw    <- oecd_fetch(OECD_DEFICIT_DATAFLOW, filter, tag, start_year, refresh)
-  result <- parse_deficit(raw)
+  result <- oecd_members_only(parse_deficit(raw))
   result[result$year >= start_year, ]
 }

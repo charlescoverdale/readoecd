@@ -105,6 +105,6 @@ get_oecd_inequality <- function(countries = "all", start_year = 1990,
     paste0("inequality_", paste(sort(countries), collapse = "_"))
   raw    <- oecd_fetch(OECD_INEQUALITY_DATAFLOW, filter, tag, start_year,
                        refresh)
-  result <- parse_inequality(raw)
+  result <- oecd_members_only(parse_inequality(raw))
   result[result$year >= start_year, ]
 }

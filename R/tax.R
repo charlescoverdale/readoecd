@@ -88,6 +88,6 @@ get_oecd_tax <- function(countries = "all", start_year = 1990,
   tag       <- if (is.null(countries)) "tax_all" else
     paste0("tax_", paste(sort(countries), collapse = "_"))
   raw    <- oecd_fetch(OECD_TAX_DATAFLOW, filter, tag, start_year, refresh)
-  result <- parse_tax(raw)
+  result <- oecd_members_only(parse_tax(raw))
   result[result$year >= start_year, ]
 }

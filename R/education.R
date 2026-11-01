@@ -86,6 +86,6 @@ get_oecd_education <- function(countries = "all", start_year = 1990,
     paste0("edu_", paste(sort(countries), collapse = "_"))
   raw    <- oecd_fetch(OECD_EDUCATION_DATAFLOW, filter, tag, start_year,
                        refresh)
-  result <- parse_education(raw)
+  result <- oecd_members_only(parse_education(raw))
   result[result$year >= start_year, ]
 }

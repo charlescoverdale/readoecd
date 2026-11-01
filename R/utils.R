@@ -203,6 +203,15 @@ list_oecd_countries <- function() {
 }
 
 # Validate country codes and return informative error
+# Keep OECD members only. With countries = "all" the API filter leaves the
+# reference area open, and the response also carries aggregates ("OECD",
+# "EU27_2020", "OECD Europe") and partner economies (India, Indonesia).
+# "all" is documented as the 38 members, and an aggregate row mixed in
+# among them is double-counted by any sum or average over the result.
+oecd_members_only <- function(result) {
+  result[result$country %in% list_oecd_countries()$iso3, , drop = FALSE]
+}
+
 validate_countries <- function(countries) {
   if (identical(countries, "all")) return(invisible(NULL))
   valid <- list_oecd_countries()$iso3
