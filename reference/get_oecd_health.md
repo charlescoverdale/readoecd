@@ -78,12 +78,12 @@ health <- try(get_oecd_health(c("AUS", "GBR", "USA"), start_year = 2000))
 #> Downloading from OECD API...
 if (!inherits(health, "try-error")) head(health)
 #>    country country_name year             series value     unit
-#> 59     AUS    Australia 2000 HEALTH_EXPENDITURE 7.574 % of GDP
-#> 60     AUS    Australia 2001 HEALTH_EXPENDITURE 7.661 % of GDP
-#> 55     AUS    Australia 2002 HEALTH_EXPENDITURE 7.859 % of GDP
-#> 53     AUS    Australia 2003 HEALTH_EXPENDITURE 7.864 % of GDP
-#> 54     AUS    Australia 2004 HEALTH_EXPENDITURE 8.070 % of GDP
-#> 56     AUS    Australia 2005 HEALTH_EXPENDITURE 7.951 % of GDP
+#> 61     AUS    Australia 2000 HEALTH_EXPENDITURE 7.574 % of GDP
+#> 62     AUS    Australia 2001 HEALTH_EXPENDITURE 7.661 % of GDP
+#> 58     AUS    Australia 2002 HEALTH_EXPENDITURE 7.859 % of GDP
+#> 47     AUS    Australia 2003 HEALTH_EXPENDITURE 7.864 % of GDP
+#> 48     AUS    Australia 2004 HEALTH_EXPENDITURE 8.070 % of GDP
+#> 49     AUS    Australia 2005 HEALTH_EXPENDITURE 7.951 % of GDP
 options(op)
 # }
 ```

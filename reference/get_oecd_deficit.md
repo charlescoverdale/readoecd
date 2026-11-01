@@ -80,12 +80,12 @@ deficit <- try(get_oecd_deficit(c("AUS", "GBR", "USA"), start_year = 2000))
 #> Downloading from OECD API...
 if (!inherits(deficit, "try-error")) head(deficit)
 #>    country country_name year           series      value     unit
-#> 75     AUS    Australia 2000 GOVT_NET_LENDING -1.3381041 % of GDP
-#> 25     AUS    Australia 2001 GOVT_NET_LENDING -0.7788197 % of GDP
+#> 21     AUS    Australia 2000 GOVT_NET_LENDING -1.3381041 % of GDP
+#> 24     AUS    Australia 2001 GOVT_NET_LENDING -0.7788197 % of GDP
 #> 4      AUS    Australia 2002 GOVT_NET_LENDING  0.6761192 % of GDP
-#> 69     AUS    Australia 2003 GOVT_NET_LENDING  0.7640926 % of GDP
-#> 1      AUS    Australia 2004 GOVT_NET_LENDING  0.8962921 % of GDP
-#> 27     AUS    Australia 2005 GOVT_NET_LENDING  1.5711434 % of GDP
+#> 67     AUS    Australia 2003 GOVT_NET_LENDING  0.7640926 % of GDP
+#> 70     AUS    Australia 2004 GOVT_NET_LENDING  0.8962921 % of GDP
+#> 11     AUS    Australia 2005 GOVT_NET_LENDING  1.5711434 % of GDP
 options(op)
 # }
 ```

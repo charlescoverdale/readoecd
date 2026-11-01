@@ -74,12 +74,12 @@ prod <- try(get_oecd_productivity(c("AUS", "GBR", "USA"), start_year = 2000))
 #> Downloading from OECD API...
 if (!inherits(prod, "try-error")) head(prod)
 #>    country country_name year       series    value      unit
-#> 1      AUS    Australia 2000 GDP_PER_HOUR 53.95757 USD_PPP_H
-#> 2      AUS    Australia 2001 GDP_PER_HOUR 55.98646 USD_PPP_H
-#> 54     AUS    Australia 2002 GDP_PER_HOUR 56.49053 USD_PPP_H
-#> 55     AUS    Australia 2003 GDP_PER_HOUR 58.06003 USD_PPP_H
-#> 56     AUS    Australia 2004 GDP_PER_HOUR 58.23856 USD_PPP_H
-#> 57     AUS    Australia 2005 GDP_PER_HOUR 58.71804 USD_PPP_H
+#> 64     AUS    Australia 2000 GDP_PER_HOUR 53.95722 USD_PPP_H
+#> 65     AUS    Australia 2001 GDP_PER_HOUR 55.98626 USD_PPP_H
+#> 66     AUS    Australia 2002 GDP_PER_HOUR 56.49016 USD_PPP_H
+#> 1      AUS    Australia 2003 GDP_PER_HOUR 58.05914 USD_PPP_H
+#> 2      AUS    Australia 2004 GDP_PER_HOUR 58.23817 USD_PPP_H
+#> 3      AUS    Australia 2005 GDP_PER_HOUR 58.71849 USD_PPP_H
 options(op)
 # }
 ```

@@ -14,6 +14,11 @@ clear_oecd_cache()
 
 Invisibly returns the number of files deleted.
 
+## Details
+
+Cached files are used for 7 days and then downloaded again; set
+`options(readoecd.cache_ttl = )` to a number of hours to change this.
+
 ## See also
 
 Other utilities:
@@ -26,8 +31,8 @@ Other utilities:
 # \donttest{
 op <- options(readoecd.cache_dir = tempdir())
 clear_oecd_cache()
-#> Warning: cannot remove file '/tmp/RtmpAe1pm9/bslib-e9b2b13fa612f50d23e4850d93d60d01', reason 'Directory not empty'
-#> Warning: cannot remove file '/tmp/RtmpAe1pm9/downlit', reason 'Directory not empty'
+#> Warning: cannot remove file '/tmp/RtmpyxknST/bslib-7db53ff92ec092c0dbca0588320fd109', reason 'Directory not empty'
+#> Warning: cannot remove file '/tmp/RtmpyxknST/downlit', reason 'Directory not empty'
 #> Cleared 2 cached files.
 options(op)
 # }

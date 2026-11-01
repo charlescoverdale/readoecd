@@ -82,9 +82,9 @@ if (!inherits(gdp, "try-error")) {
   head(latest[order(-latest$value), c("country_name", "value")], 10)
 }
 #>      country_name    value
-#> 26  United States 30769700
-#> 16 United Kingdom  4480458
-#> 25      Australia  2080083
+#> 26  United States 30774100
+#> 12 United Kingdom  4496301
+#> 25      Australia  2093819
 options(op)
 # }
 ```

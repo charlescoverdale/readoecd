@@ -1,6 +1,37 @@
 # Changelog
 
+## readoecd 0.3.5
+
+### Cached data now expire after 7 days
+
+Every `get_oecd_*()` function returned its cached copy indefinitely, so
+a call made months after the first one returned the data as they stood
+then, without later releases or revisions, until `refresh = TRUE` was
+passed or the cache was cleared. Cached copies are now downloaded again
+once they are 7 days old. Set `options(readoecd.cache_ttl = )` to a
+number of hours to change this.
+
+### `countries = "all"` returns the 38 members, as documented
+
+With `countries = "all"` the request leaves the country dimension open,
+and the OECD now answers with its aggregates (OECD, OECD Europe, the
+euro area, the EU) and partner economies (India, Indonesia, South Africa
+and others) alongside the members. They came through as ordinary rows:
+[`get_oecd_gdp()`](https://charlescoverdale.github.io/readoecd/reference/get_oecd_gdp.md)
+ranked “OECD” and “OECD Europe” above the United States, and any sum or
+average over the result double-counted. Every `get_oecd_*()` function
+now keeps the 38 members only, which is what `"all"` was documented to
+mean and what `validate_countries()` already enforced for explicit
+codes.
+
+### Citation
+
+`citation("readoecd")` reported version 0.3.0 whatever version was
+installed. It now reads the installed version.
+
 ## readoecd 0.3.4
+
+CRAN release: 2026-09-09
 
 Repair release. Five of the eight data functions were broken against the
 live OECD API and returned nothing, or in one case an empty frame,
@@ -60,6 +91,8 @@ The network tests skip rather than fail when the portal is refusing, via
 a new `expect_oecd()` helper, so the suite stays a useful signal.
 
 ## readoecd 0.3.4
+
+CRAN release: 2026-09-09
 
 - Fixed incorrect function name in NEWS.md (`get_oecd_trade` corrected
   to `get_oecd_current_account`).
