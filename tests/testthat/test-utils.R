@@ -50,6 +50,25 @@ test_that("clear_oecd_cache() runs without error", {
   expect_no_error(clear_oecd_cache())
 })
 
+test_that("oecd_cache_ttl() defaults to 7 days and rejects bad values", {
+  op <- options(readoecd.cache_ttl = NULL)
+  on.exit(options(op))
+  expect_equal(oecd_cache_ttl(), 168)
+  options(readoecd.cache_ttl = -1)
+  expect_error(oecd_cache_ttl(), "non-negative")
+})
+
+test_that("oecd_fetch() serves a fresh cached copy without the network", {
+  op <- options(readoecd.cache_dir = tempfile("readoecd_ttl_"),
+                readoecd.cache_ttl = 1)
+  on.exit(options(op))
+  dir.create(oecd_cache_dir(), recursive = TRUE)
+  path <- oecd_cache_path("TEST", "AUS", 2020)
+  utils::write.csv(data.frame(x = 1), path, row.names = FALSE)
+  out <- oecd_fetch("NOT.A,REAL@FLOW,1.0", "AUS", "TEST", 2020)
+  expect_equal(out, data.frame(x = 1L))
+})
+
 test_that("check_oecd_api() reaches the API", {
   skip_on_cran()
   skip_if_offline()

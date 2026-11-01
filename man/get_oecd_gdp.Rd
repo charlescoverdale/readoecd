@@ -51,8 +51,8 @@ options(op)
 
 }
 \seealso{
-Other economic indicators: 
-\code{\link{get_oecd_cpi}()},
-\code{\link{get_oecd_unemployment}()}
+Other economic indicators:
+\code{\link[=get_oecd_cpi]{get_oecd_cpi()}},
+\code{\link[=get_oecd_unemployment]{get_oecd_unemployment()}}
 }
 \concept{economic indicators}

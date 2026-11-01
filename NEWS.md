@@ -1,3 +1,19 @@
+# readoecd 0.3.5
+
+## Cached data now expire after 7 days
+
+Every `get_oecd_*()` function returned its cached copy indefinitely, so a
+call made months after the first one returned the data as they stood
+then, without later releases or revisions, until `refresh = TRUE` was
+passed or the cache was cleared. Cached copies are now downloaded again
+once they are 7 days old. Set `options(readoecd.cache_ttl = )` to a
+number of hours to change this.
+
+## Citation
+
+`citation("readoecd")` reported version 0.3.0 whatever version was
+installed. It now reads the installed version.
+
 # readoecd 0.3.4
 
 Repair release. Five of the eight data functions were broken against the

@@ -7,6 +7,19 @@ oecd_cache_dir <- function() {
   getOption("readoecd.cache_dir", default = tools::R_user_dir("readoecd", "cache"))
 }
 
+# Cache lifetime in hours, from the readoecd.cache_ttl option. OECD
+# datasets are updated as members report (monthly for the CPI and
+# unemployment series), so a cached copy older than this is fetched again.
+# The default is 7 days, which keeps repeat calls well under the API's
+# rate limit.
+oecd_cache_ttl <- function() {
+  ttl <- getOption("readoecd.cache_ttl", default = 24 * 7)
+  if (!is.numeric(ttl) || length(ttl) != 1L || is.na(ttl) || ttl < 0) {
+    cli::cli_abort("Option {.code readoecd.cache_ttl} must be a single non-negative number of hours.")
+  }
+  ttl
+}
+
 # Build cache file path from dataset + countries + start_year
 oecd_cache_path <- function(dataset_tag, countries, start_year) {
   countries_str <- paste(sort(countries), collapse = "_")
@@ -23,7 +36,10 @@ oecd_fetch <- function(dataflow, filter, tag, start_year, refresh = FALSE) {
   path <- oecd_cache_path(tag, cache_countries, start_year)
 
   if (!refresh && file.exists(path)) {
-    return(utils::read.csv(path, stringsAsFactors = FALSE))
+    age <- difftime(Sys.time(), file.info(path)$mtime, units = "hours")
+    if (as.numeric(age) < oecd_cache_ttl()) {
+      return(utils::read.csv(path, stringsAsFactors = FALSE))
+    }
   }
 
   url <- paste0(
@@ -239,6 +255,9 @@ check_oecd_api <- function() {
 #' Deletes all files cached by `readoecd` on your local machine. After
 #' clearing, the next call to any `get_oecd_*()` function will re-download
 #' from the OECD API.
+#'
+#' Cached files are used for 7 days and then downloaded again; set
+#' `options(readoecd.cache_ttl = )` to a number of hours to change this.
 #'
 #' @return Invisibly returns the number of files deleted.
 #'

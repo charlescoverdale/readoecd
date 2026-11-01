@@ -14,6 +14,10 @@ Deletes all files cached by \code{readoecd} on your local machine. After
 clearing, the next call to any \verb{get_oecd_*()} function will re-download
 from the OECD API.
 }
+\details{
+Cached files are used for 7 days and then downloaded again; set
+\code{options(readoecd.cache_ttl = )} to a number of hours to change this.
+}
 \examples{
 \donttest{
 op <- options(readoecd.cache_dir = tempdir())
@@ -23,8 +27,8 @@ options(op)
 
 }
 \seealso{
-Other utilities: 
-\code{\link{check_oecd_api}()},
-\code{\link{list_oecd_countries}()}
+Other utilities:
+\code{\link[=check_oecd_api]{check_oecd_api()}},
+\code{\link[=list_oecd_countries]{list_oecd_countries()}}
 }
 \concept{utilities}

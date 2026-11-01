@@ -1,6 +1,6 @@
 Package: readoecd
 Title: Download and Tidy Data from the 'OECD'
-Version: 0.3.4
+Version: 0.3.5
 Authors@R: person("Charles", "Coverdale", email = "charlesfcoverdale@gmail.com",
     role = c("aut", "cre"))
 Description: Provides clean, tidy access to key economic indicators published
@@ -18,7 +18,6 @@ Language: en-GB
 URL: https://charlescoverdale.github.io/readoecd/, https://github.com/charlescoverdale/readoecd
 BugReports: https://github.com/charlescoverdale/readoecd/issues
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Depends: R (>= 4.1.0)
 Imports:
     httr2,
@@ -26,3 +25,4 @@ Imports:
 Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Config/roxygen2/version: 8.1.0

@@ -41,7 +41,7 @@ options(op)
 
 }
 \seealso{
-Other fiscal: 
-\code{\link{get_oecd_deficit}()}
+Other fiscal:
+\code{\link[=get_oecd_deficit]{get_oecd_deficit()}}
 }
 \concept{fiscal}

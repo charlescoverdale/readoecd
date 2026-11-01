@@ -21,8 +21,8 @@ check_oecd_api()
 
 }
 \seealso{
-Other utilities: 
-\code{\link{clear_oecd_cache}()},
-\code{\link{list_oecd_countries}()}
+Other utilities:
+\code{\link[=clear_oecd_cache]{clear_oecd_cache()}},
+\code{\link[=list_oecd_countries]{list_oecd_countries()}}
 }
 \concept{utilities}

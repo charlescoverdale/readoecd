@@ -48,7 +48,7 @@ options(op)
 
 }
 \seealso{
-Other productivity and trade: 
-\code{\link{get_oecd_productivity}()}
+Other productivity and trade:
+\code{\link[=get_oecd_productivity]{get_oecd_productivity()}}
 }
 \concept{productivity and trade}

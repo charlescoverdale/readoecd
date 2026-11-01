@@ -47,8 +47,8 @@ options(op)
 
 }
 \seealso{
-Other social indicators: 
-\code{\link{get_oecd_education}()},
-\code{\link{get_oecd_health}()}
+Other social indicators:
+\code{\link[=get_oecd_education]{get_oecd_education()}},
+\code{\link[=get_oecd_health]{get_oecd_health()}}
 }
 \concept{social indicators}

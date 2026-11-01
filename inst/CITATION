@@ -3,6 +3,6 @@ bibentry(
   title   = "readoecd: Access OECD Data",
   author  = person("Charles", "Coverdale"),
   year    = "2026",
-  note    = "R package version 0.3.0",
+  note    = paste("R package version", meta$Version),
   url     = "https://github.com/charlescoverdale/readoecd"
 )
